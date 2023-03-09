@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RegionTmp : MonoBehaviour {
-    
+public class Region : MonoBehaviour {
+
     private int radiusOut;
-    private int radiusIn = Mathf.sqrt(3)/2 * radiusOut;
     private int centerPos;
-    private BiomeTmp biome;
+    private Biome biome;
     private int idDrawing;
-    
-    void Start(){
+
+    void Start() {
+        
     }
 
-    void Update(){
+    void Update() {
         
     }
 }
