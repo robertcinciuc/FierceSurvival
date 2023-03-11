@@ -18,7 +18,7 @@ public class Region : MonoBehaviour {
         
     }
     
-    public void setupRegion(float height, float width, Coordinate index, Dictionary<Type, List<Texture2D>> biomeTextures){
+    public void setupRegion(float height, float width, Coordinate index, Dictionary<System.Type, List<Texture2D>> biomeTextures){
       this.height = height;
       this.width = width;
       this.index = index;

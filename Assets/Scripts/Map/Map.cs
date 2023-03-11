@@ -7,7 +7,7 @@ public class Map : MonoBehaviour {
     public int nbRegionsRow;
     public int nbRegionsCol;
     public GameObject regionPrefab;
-    public Dictionary<Type, List<Texture2D>> biomeTextures;
+    public Dictionary<System.Type, List<Texture2D>> biomeTextures;
 
     private float width { get; set; }
     private float height { get; set; }
@@ -33,15 +33,17 @@ public class Map : MonoBehaviour {
     private void setupRegions() {
         regionWidth =  width / nbRegionsCol;
         regionHeight = 4 * height / (4 * nbRegionsRow - (nbRegionsRow - 1));
-        Vector3 prefabRegionExtents = regionPrefab.GetComponent<MeshFilter>.mesh.bounds.extents;
+        GameObject regionTmp = Instantiate(regionPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        Vector3 prefabRegionExtents = regionTmp.GetComponent<MeshFilter>().mesh.bounds.extents;
         float horizScale = regionWidth / prefabRegionExtents.x;
-        float verticScale = regionHeight / prefabRegionExtents.y;
-                
+        float verticScale = regionHeight / prefabRegionExtents.z;
+        DestroyImmediate(regionTmp);
+
         for (int i = 0; i < nbRegionsRow; i++) {
             for (int j = 0; j < nbRegionsCol; j++) {
                 float xPos = (i % nbRegionsCol) * regionWidth + regionWidth / 2;
                 float yPos = height - regionHeight / 2 - regionHeight * j;
-                
+
                 GameObject region = Instantiate(regionPrefab, new Vector3(xPos, yPos, 0), new Quaternion(-0.71f, 0, 0, 0.71f));
                 region.transform.localScale = new Vector3(horizScale, verticScale, 1);
                 
@@ -55,7 +57,7 @@ public class Map : MonoBehaviour {
     }
     
     private void setupBiomeTextures(){
-      biomeTextures = new Dictionary<Type, List<Texture2D>>();
+      biomeTextures = new Dictionary<System.Type, List<Texture2D>>();
       // TODO:
       // biomeTextures.Add(Forest.GetType(), new List<>())
     }
