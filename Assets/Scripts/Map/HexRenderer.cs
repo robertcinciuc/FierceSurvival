@@ -9,6 +9,8 @@ public class HexRenderer : MonoBehaviour {
     private float radiusIn;
     private Vector3 center;
     private int[] triangles;
+    private Vector3[] vertices;
+    private Vector2[] uv;
 
     void Start() {
         triangles = new int[] {
@@ -19,12 +21,14 @@ public class HexRenderer : MonoBehaviour {
             0, 5, 6,
             0, 6, 1
         };
+        vertices = new Vector3[7];
+        uv = new Vector2[7];
 
         drawHexagon();
     }
 
     void Update() {
-        
+        drawHexagon();
     }
 
     //Public methods
@@ -43,17 +47,18 @@ public class HexRenderer : MonoBehaviour {
     //Private methods
 
     private void drawHexagon() {
-        Vector3[] vertices = getHexagonVertices();
+        setupHexagonVertices();
+        setupUVs();
 
         var mesh = new Mesh();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
+        mesh.uv = uv;
         gameObject.GetComponent<MeshFilter>().sharedMesh = mesh;
         gameObject.GetComponent<MeshRenderer>().material = material;
     }
 
-    private Vector3[] getHexagonVertices() {
-        Vector3[] vertices = new Vector3[7];
+    private void setupHexagonVertices() {
         float angle30Rad = Mathf.PI / 180f * 30;
         vertices[0] = center;
         vertices[1] = new Vector3(center.x + Mathf.Sin(angle30Rad) * radiusOut, center.y + radiusIn, center.z);
@@ -62,7 +67,17 @@ public class HexRenderer : MonoBehaviour {
         vertices[4] = new Vector3(center.x - Mathf.Sin(angle30Rad) * radiusOut, center.y - radiusIn, center.z);
         vertices[5] = new Vector3(center.x - radiusOut, center.y, center.z);
         vertices[6] = new Vector3(center.x - Mathf.Sin(angle30Rad) * radiusOut, center.y + radiusIn, center.z);
-
-        return vertices;
     }
+
+
+    private void setupUVs() {
+        uv[0] = new Vector2(0, 0);
+        uv[1] = new Vector2(0, 1);
+        uv[2] = new Vector2(1, 1);
+        uv[3] = new Vector2(1, 0);
+        uv[4] = new Vector2(1, 1);
+        uv[5] = new Vector2(0, 1);
+        uv[6] = new Vector2(1, 1);
+    }
+
 }
