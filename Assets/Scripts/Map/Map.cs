@@ -14,7 +14,11 @@ public class Map : MonoBehaviour {
 
     void Start() {
         tiles = new Dictionary<Coordinate, GameObject>();
-        
+
+        if (!biomeManager.getIsSetup()) {
+            biomeManager.setupBiomeMaterials();
+        }
+
         Vector3 extents = GetComponent<Renderer>().bounds.extents;
         mapHalfWidth = extents.x;
         mapHalfHeight = extents.y;
