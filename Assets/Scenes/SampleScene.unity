@@ -232,9 +232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33869ac4759df634b86dc34d311bbffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nbRegionsRow: 2
-  nbRegionsCol: 5
-  regionPrefab: {fileID: 3766637744445653491, guid: 790cd947b3fef9d4e81e0e701a82d531, type: 3}
+  nbRegionsRow: 5
+  nbRegionsCol: 8
+  regionMaterial: {fileID: 15303, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!850595691 &576792961
 LightingSettings:
   m_ObjectHideFlags: 0

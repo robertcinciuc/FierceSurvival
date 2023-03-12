@@ -6,11 +6,11 @@ public class Map : MonoBehaviour {
 
     public int nbRegionsRow;
     public int nbRegionsCol;
-    public GameObject regionPrefab;
     public Dictionary<System.Type, List<Texture2D>> biomeTextures;
+    public Material regionMaterial;
 
-    private float width { get; set; }
-    private float height { get; set; }
+    private float mapHalfWidth { get; set; }
+    private float mapHalfHeight { get; set; }
     private Dictionary<Coordinate, GameObject> regions;
     private float regionWidth;
     private float regionHeight;
@@ -20,40 +20,54 @@ public class Map : MonoBehaviour {
         setupBiomeTextures();
         
         Vector3 extents = GetComponent<Renderer>().bounds.extents;
-        width = extents.x;
-        height = extents.y;
+        mapHalfWidth = extents.x;
+        mapHalfHeight = extents.y;
 
-        setupRegions();
+        setupRegions2();
     }
 
     void Update() {
         
     }
 
-    private void setupRegions() {
-        regionWidth =  width / nbRegionsCol;
-        regionHeight = 4 * height / (4 * nbRegionsRow - (nbRegionsRow - 1));
-        GameObject regionTmp = Instantiate(regionPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        Vector3 prefabRegionExtents = regionTmp.GetComponent<MeshFilter>().mesh.bounds.extents;
-        float horizScale = regionWidth / prefabRegionExtents.x;
-        float verticScale = regionHeight / prefabRegionExtents.z;
-        DestroyImmediate(regionTmp);
+    private void setupRegions2() {
+        float hexagonRadiusIn = mapHalfHeight / nbRegionsRow;
+        float hexagonRadiusOut = hexagonRadiusIn / Mathf.Cos(Mathf.PI / 180f * 30);
 
-        for (int i = 0; i < nbRegionsRow; i++) {
-            for (int j = 0; j < nbRegionsCol; j++) {
-                float xPos = (i % nbRegionsCol) * regionWidth + regionWidth / 2;
-                float yPos = height - regionHeight / 2 - regionHeight * j;
+        for (int i = 0; i < nbRegionsCol; i++) {
+            for (int j = 0; j < nbRegionsRow; j++) {
+                if (i % 2 == 0 && j == nbRegionsRow - 1) {
+                    continue;
+                }
 
-                GameObject region = Instantiate(regionPrefab, new Vector3(xPos, yPos, 0), new Quaternion(-0.71f, 0, 0, 0.71f));
-                region.transform.localScale = new Vector3(horizScale, verticScale, 1);
-                
+                GameObject hexagon = setupHexagon(hexagonRadiusOut, j, i);
                 Coordinate coord = new Coordinate(i, j);
-                Region regionComp = region.AddComponent<Region>();
-                regionComp.setupRegion(regionHeight, regionWidth, coord, biomeTextures);
-                
-                regions.Add(coord, region);
+                Region region = hexagon.AddComponent<Region>();
+                region.setupRegion(regionHeight, regionWidth, coord, biomeTextures);
+
+                regions.Add(coord, hexagon);
             }
         }
+    }
+
+    private GameObject setupHexagon(float radiusOut, int row, int col) {
+        GameObject hexagon = new GameObject();
+        hexagon.AddComponent<MeshFilter>();
+        hexagon.AddComponent<MeshRenderer>();
+        HexRenderer hexRenderer = hexagon.AddComponent<HexRenderer>();
+        hexRenderer.setupHexagon(radiusOut, new Vector3(0, 0, 0), regionMaterial);
+
+        Vector3 mapCenter = gameObject.transform.position;
+        float xShift = - radiusOut * col / 2;
+        float yShift = 0;
+        if(col % 2 == 0) {
+            yShift = -hexRenderer.getRadiusIn();
+        }
+        float xPos = mapCenter.x - mapHalfWidth + radiusOut + col * radiusOut * 2 + xShift; 
+        float yPos = mapCenter.y + mapHalfHeight - hexRenderer.getRadiusIn() - row * hexRenderer.getRadiusIn() * 2 + yShift;
+        hexagon.transform.position = new Vector3(xPos, yPos, 0);
+
+        return hexagon;
     }
     
     private void setupBiomeTextures(){
