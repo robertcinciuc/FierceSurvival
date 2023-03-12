@@ -8,13 +8,23 @@ public class HexRenderer : MonoBehaviour {
     private float radiusOut;
     private float radiusIn;
     private Vector3 center;
+    private int[] triangles;
 
     void Start() {
-        
+        triangles = new int[] {
+            0, 1, 2,
+            0, 2, 3,
+            0, 3, 4,
+            0, 4, 5,
+            0, 5, 6,
+            0, 6, 1
+        };
+
+        drawHexagon();
     }
 
     void Update() {
-        drawHexagon();
+        
     }
 
     //Public methods
@@ -34,14 +44,6 @@ public class HexRenderer : MonoBehaviour {
 
     private void drawHexagon() {
         Vector3[] vertices = getHexagonVertices();
-        var triangles = new int[] {
-            0, 1, 2,
-            0, 2, 3,
-            0, 3, 4,
-            0, 4, 5,
-            0, 5, 6,
-            0, 6, 1
-        };
 
         var mesh = new Mesh();
         mesh.vertices = vertices;
