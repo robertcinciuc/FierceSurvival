@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Feature : MonoBehaviour {
+public enum Visibility { Near, Far };
 
-    public enum Visibility { Near, Far};
+public abstract class Feature : MonoBehaviour {
 
     private Visibility visibility;
 
@@ -23,4 +23,6 @@ public class Feature : MonoBehaviour {
     public Visibility getVisibility() {
         return visibility;
     }
+
+    public abstract string getName();
 }

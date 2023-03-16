@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,11 @@ public class Map : MonoBehaviour {
 
     private float mapHalfWidth;
     private float mapHalfHeight;
-    private Dictionary<Coordinate, GameObject> tiles;
+    private GameObject[,] tiles;
+    private GameObject currentTile;
 
     void Start() {
-        tiles = new Dictionary<Coordinate, GameObject>();
+        tiles = new GameObject[nbRegionsRow, nbRegionsCol];
 
         if (!biomeManager.getIsSetup()) {
             biomeManager.setupBiomeMaterials();
@@ -23,14 +25,21 @@ public class Map : MonoBehaviour {
         mapHalfWidth = extents.x;
         mapHalfHeight = extents.y;
 
-        setupRegions();
+        setupTiles();
+
+        currentTile = tiles[nbRegionsRow / 2, nbRegionsRow / 2];
+        Region currentRegion = currentTile.GetComponent<Region>();
+        Debug.Log("current features: " + Array.ConvertAll(currentRegion.getFeatures(), feature => feature.getName() + feature.getVisibility() + " "));
+
+        Region neighboringRegion = getNeighboringRegion(currentRegion, Direction.NortEast);
+        Debug.Log("neighbor's features: " + Array.ConvertAll(neighboringRegion.getFeatures(), feature => feature.getName() + feature.getVisibility() + " "));
     }
 
     void Update() {
         
     }
 
-    private void setupRegions() {
+    private void setupTiles() {
         float hexagonRadiusIn = mapHalfHeight / nbRegionsRow;
         float hexagonRadiusOut = hexagonRadiusIn / Mathf.Cos(Mathf.PI / 180f * 30);
 
@@ -43,11 +52,11 @@ public class Map : MonoBehaviour {
                 GameObject tile = new GameObject();
                 Region region = tile.AddComponent<Region>();
                 ForestConiferous forestConiferous = tile.AddComponent<ForestConiferous>();
-                Coordinate coord = new Coordinate(i, j);
+                Coordinate coord = new Coordinate(j, i);
                 region.setupRegion(coord, forestConiferous, biomeManager.getMaterialsForBiome(forestConiferous.GetType()));
                 setupHexagonRendering(tile, hexagonRadiusOut, j, i, region.getMaterial());
 
-                tiles.Add(coord, tile);
+                tiles[i, j] = tile;
             }
         }
     }
@@ -69,5 +78,10 @@ public class Map : MonoBehaviour {
         tile.transform.position = new Vector3(xPos, yPos, 0);
     }
     
+    private Region getNeighboringRegion(Region currentRegion, Direction direction) {
+        Coordinate neighborCoordinate = currentRegion.getNeighboringCoordinate(Direction.NortEast);
+        GameObject neighboringTile = tiles[neighborCoordinate.getRow(), neighborCoordinate.getColumn()];
+        return neighboringTile.GetComponent<Region>();
+    }
 
 }

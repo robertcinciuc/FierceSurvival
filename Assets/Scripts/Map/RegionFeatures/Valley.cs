@@ -11,4 +11,8 @@ public class Valley : Feature {
     void Update() {
         
     }
+
+    public override string getName() {
+        return "Valley";
+    }
 }
