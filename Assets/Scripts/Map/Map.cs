@@ -29,10 +29,11 @@ public class Map : MonoBehaviour {
 
         currentTile = tiles[nbRegionsRow / 2, nbRegionsRow / 2];
         Region currentRegion = currentTile.GetComponent<Region>();
-        Debug.Log("current features: " + Array.ConvertAll(currentRegion.getFeatures(), feature => feature.getName() + feature.getVisibility() + " "));
+        Debug.Log("current features: " + currentRegion.getFeatures());
+        Debug.Log("current feature north: " + currentRegion.getDirectionalFeature(Direction.North));
 
         Region neighboringRegion = getNeighboringRegion(currentRegion, Direction.NortEast);
-        Debug.Log("neighbor's features: " + Array.ConvertAll(neighboringRegion.getFeatures(), feature => feature.getName() + feature.getVisibility() + " "));
+        Debug.Log("neighbor's features: " + neighboringRegion.getFeatures());
     }
 
     void Update() {

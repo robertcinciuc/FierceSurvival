@@ -9,9 +9,8 @@ public class Region : MonoBehaviour {
     private Coordinate index;
     private Biome biome;
     private Material material;
-    //Features start from north clockwise
-    private Feature[] features;
-
+    private Dictionary<Direction, Feature> features;
+    
     void Start() {
         
     }
@@ -23,15 +22,10 @@ public class Region : MonoBehaviour {
     //Public methods
 
     public void setupRegion(Coordinate index, Biome biome, List<Material> biomeMaterials){
+        setupDirectionalFeatures();
         this.index = index;
         this.biome = biome;
         this.material = biomeMaterials[0];
-        features = new Feature[6];
-        for (int i = 0; i < features.Length; i++) {
-            Valley feature = gameObject.AddComponent<Valley>();
-            feature.setupFeature();
-            features[i] = feature;
-        }
     }
 
     public Coordinate getNeighboringCoordinate(Direction direction) {
@@ -50,12 +44,27 @@ public class Region : MonoBehaviour {
 
         return null;
     }
+    
+    public Feature getDirectionalFeature(Direction direction){
+      return features[direction];
+    }
 
     public Material getMaterial() {
         return material;
     }
 
-    public Feature[] getFeatures() {
+    public Dictionary<Direction, Feature> getFeatures() {
         return features;
+    }
+    
+    // Private methods
+    
+    private int setupDirectionalFeature(){
+        features = new Dictionary<Direction, Feature>();
+        foreach (Direction direction in Enum.GetValues(typeof(Direction))) {
+            Valley feature = gameObject.AddComponent<Valley>();
+            feature.setupFeature();
+            features.Add(direction, feature);
+        }
     }
 }
