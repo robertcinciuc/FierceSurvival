@@ -39,7 +39,15 @@ public class Map : MonoBehaviour {
     void Update() {
         
     }
-
+    
+    // Public methods
+    
+    public void setCurrentTile(GameObject tile){
+        currentTile = tile;
+    }
+    
+    // Private methods
+    
     private void setupTiles() {
         float hexagonRadiusIn = mapHalfHeight / nbRegionsRow;
         float hexagonRadiusOut = hexagonRadiusIn / Mathf.Cos(Mathf.PI / 180f * 30);
@@ -56,7 +64,9 @@ public class Map : MonoBehaviour {
                 Coordinate coord = new Coordinate(j, i);
                 region.setupRegion(coord, forestConiferous, biomeManager.getMaterialsForBiome(forestConiferous.GetType()));
                 setupHexagonRendering(tile, hexagonRadiusOut, j, i, region.getMaterial());
-
+                ClickableTileTmp clickableTile = tile.AddComponent<ClickableTileTmp>();
+                clickableTile.setupClickableTile(this);
+                
                 tiles[i, j] = tile;
             }
         }
