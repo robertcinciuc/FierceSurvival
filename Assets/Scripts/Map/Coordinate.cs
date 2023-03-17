@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,5 +19,17 @@ public class Coordinate {
 
     public int getColumn() {
         return column;
+    }
+
+    public override int GetHashCode() {
+        return row.GetHashCode() * 17 + column.GetHashCode();
+    }
+    
+    public override bool Equals(object otherCoordinate) {
+        if(otherCoordinate.GetType() != typeof(Coordinate)) {
+            return false;
+        }
+
+        return this.GetHashCode() == ((Coordinate)otherCoordinate).GetHashCode();
     }
 }

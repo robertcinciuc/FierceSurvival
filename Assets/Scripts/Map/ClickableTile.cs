@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ClickableTile : MonoBehaviour {
-    
+
     private Map map;
-    
-    void Start(){
+
+    void Start() {
     }
 
-    void Update(){
+    void Update() {
     }
 
     void OnMouseOver() {
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButtonDown(0)) {
             map.setCurrentTile(gameObject);
         }
     }
-    
-    public void setupClickableTile(Map map){
+
+    public void setupClickableTile(Map map) {
         this.map = map;
     }
 }

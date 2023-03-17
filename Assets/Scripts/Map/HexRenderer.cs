@@ -13,6 +13,14 @@ public class HexRenderer : MonoBehaviour {
     private Vector2[] uv;
 
     void Start() {
+    }
+
+    void Update() {
+    }
+
+    //Public methods
+
+    public void setupHexagon(float radiusOut, Vector3 center, Material material) {
         triangles = new int[] {
             0, 1, 2,
             0, 2, 3,
@@ -24,20 +32,12 @@ public class HexRenderer : MonoBehaviour {
         vertices = new Vector3[7];
         uv = new Vector2[7];
 
-        drawHexagon();
-    }
-
-    void Update() {
-        drawHexagon();
-    }
-
-    //Public methods
-
-    public void setupHexagon(float radiusOut, Vector3 center, Material material) {
         this.radiusOut = radiusOut;
         this.radiusIn = Mathf.Cos(Mathf.PI / 180f * 30) * radiusOut;
         this.center = center;
         this.material = material;
+
+        drawHexagon();
     }
 
     public float getRadiusIn() {
@@ -68,7 +68,6 @@ public class HexRenderer : MonoBehaviour {
         vertices[5] = new Vector3(center.x - radiusOut, center.y, center.z);
         vertices[6] = new Vector3(center.x - Mathf.Sin(angle30Rad) * radiusOut, center.y + radiusIn, center.z);
     }
-
 
     private void setupUVs() {
         uv[0] = new Vector2(0, 0);

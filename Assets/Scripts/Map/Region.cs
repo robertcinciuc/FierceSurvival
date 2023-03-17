@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,10 +57,14 @@ public class Region : MonoBehaviour {
     public Dictionary<Direction, Feature> getFeatures() {
         return features;
     }
+
+    public Coordinate getIndex() {
+        return index;
+    }
     
     // Private methods
     
-    private int setupDirectionalFeature(){
+    private void setupDirectionalFeatures(){
         features = new Dictionary<Direction, Feature>();
         foreach (Direction direction in Enum.GetValues(typeof(Direction))) {
             Valley feature = gameObject.AddComponent<Valley>();

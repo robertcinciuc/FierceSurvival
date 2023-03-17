@@ -11,11 +11,12 @@ public class Map : MonoBehaviour {
 
     private float mapHalfWidth;
     private float mapHalfHeight;
-    private GameObject[,] tiles;
+    private Dictionary<int, GameObject> tiles;
     private GameObject currentTile;
+    private float tileZDelta = -0.1f;
 
     void Start() {
-        tiles = new GameObject[nbRegionsRow, nbRegionsCol];
+        tiles = new Dictionary<int, GameObject>();
 
         if (!biomeManager.getIsSetup()) {
             biomeManager.setupBiomeMaterials();
@@ -26,14 +27,6 @@ public class Map : MonoBehaviour {
         mapHalfHeight = extents.y;
 
         setupTiles();
-
-        currentTile = tiles[nbRegionsRow / 2, nbRegionsRow / 2];
-        Region currentRegion = currentTile.GetComponent<Region>();
-        Debug.Log("current features: " + currentRegion.getFeatures());
-        Debug.Log("current feature north: " + currentRegion.getDirectionalFeature(Direction.North));
-
-        Region neighboringRegion = getNeighboringRegion(currentRegion, Direction.NortEast);
-        Debug.Log("neighbor's features: " + neighboringRegion.getFeatures());
     }
 
     void Update() {
@@ -44,6 +37,17 @@ public class Map : MonoBehaviour {
     
     public void setCurrentTile(GameObject tile){
         currentTile = tile;
+        Region currentRegion = currentTile.GetComponent<Region>();
+        Debug.Log("current index: " + currentRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn());
+        Debug.Log("current feature north: " + currentRegion.getDirectionalFeature(Direction.North));
+
+        Region neighboringRegion = getNeighboringRegion(currentRegion, Direction.NortEast);
+        if (neighboringRegion == null) {
+            Debug.Log("Neighbor doesn't exist");
+        } else {
+            Debug.Log("neighbor's index: " + neighboringRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn());
+            Debug.Log("neighbor's north feature: " + neighboringRegion.getDirectionalFeature(Direction.North));
+        }
     }
     
     // Private methods
@@ -64,10 +68,14 @@ public class Map : MonoBehaviour {
                 Coordinate coord = new Coordinate(j, i);
                 region.setupRegion(coord, forestConiferous, biomeManager.getMaterialsForBiome(forestConiferous.GetType()));
                 setupHexagonRendering(tile, hexagonRadiusOut, j, i, region.getMaterial());
-                ClickableTileTmp clickableTile = tile.AddComponent<ClickableTileTmp>();
+
+                MeshCollider meshCollider = tile.AddComponent<MeshCollider>();
+                meshCollider.sharedMesh = tile.GetComponent<MeshFilter>().sharedMesh;
+                
+                ClickableTile clickableTile = tile.AddComponent<ClickableTile>();
                 clickableTile.setupClickableTile(this);
                 
-                tiles[i, j] = tile;
+                tiles.Add(coord.GetHashCode(), tile);
             }
         }
     }
@@ -86,12 +94,15 @@ public class Map : MonoBehaviour {
         }
         float xPos = mapCenter.x - mapHalfWidth + radiusOut + col * radiusOut * 2 + xShift; 
         float yPos = mapCenter.y + mapHalfHeight - hexRenderer.getRadiusIn() - row * hexRenderer.getRadiusIn() * 2 + yShift;
-        tile.transform.position = new Vector3(xPos, yPos, 0);
+        tile.transform.position = new Vector3(xPos, yPos, gameObject.transform.position.z + tileZDelta);
     }
     
     private Region getNeighboringRegion(Region currentRegion, Direction direction) {
         Coordinate neighborCoordinate = currentRegion.getNeighboringCoordinate(Direction.NortEast);
-        GameObject neighboringTile = tiles[neighborCoordinate.getRow(), neighborCoordinate.getColumn()];
+        if (!tiles.ContainsKey(neighborCoordinate.GetHashCode())) {
+            return null;
+        }
+        GameObject neighboringTile = tiles[neighborCoordinate.GetHashCode()];
         return neighboringTile.GetComponent<Region>();
     }
 
