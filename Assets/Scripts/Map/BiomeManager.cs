@@ -7,10 +7,7 @@ public class BiomeManager : MonoBehaviour {
     public Dictionary<System.Type, List<Material>> biomeMaterials;
     public List<Material> forestConiferousMaterials;
 
-    private bool isSetup = false;
-
     void Start() {
-        setupBiomeMaterials();
     }
 
     void Update() {
@@ -27,14 +24,9 @@ public class BiomeManager : MonoBehaviour {
         return biomeMaterials[biomeType];
     }
 
-    public bool getIsSetup() {
-        return isSetup;
-    }
-
     public void setupBiomeMaterials() {
         biomeMaterials = new Dictionary<System.Type, List<Material>>();
         biomeMaterials.Add(typeof(ForestConiferous), forestConiferousMaterials);
-        isSetup = true;
     }
 
     //Private methods

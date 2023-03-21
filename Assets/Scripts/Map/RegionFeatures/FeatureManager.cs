@@ -14,7 +14,7 @@ public class FeatureManager : MonoBehaviour {
     
     //Public methods
 
-    public Syste.Type getFeature(int index) {
+    public System.Type getFeature(int index) {
         return features[index];
     }
     
@@ -23,7 +23,7 @@ public class FeatureManager : MonoBehaviour {
     }
     
     public void setupFeatureManager() {
-        features = new List<Feature>();
+        features = new List<System.Type>();
         features.Add(typeof(Pond));
         features.Add(typeof(Lake));
         features.Add(typeof(River));
