@@ -30,18 +30,26 @@ public class Region : MonoBehaviour {
     }
 
     public Coordinate getNeighboringCoordinate(Direction direction) {
+        int isoNorthEastWest = 1;
+        int isoSouthEastWest = 1;
+        if (index.getColumn() % 2 == 0) {
+            isoNorthEastWest = 0;
+        } else {
+            isoSouthEastWest = 0;
+        }
+
         if(direction.Equals(Direction.North))
             return new Coordinate(index.getRow() - 1, index.getColumn());
         if(direction.Equals(Direction.NorthEast))
-            return new Coordinate(index.getRow() - 1, index.getColumn() + 1);
+            return new Coordinate(index.getRow() - isoNorthEastWest, index.getColumn() + 1);
         if(direction.Equals(Direction.SouthEast))
-            return new Coordinate(index.getRow(), index.getColumn() + 1);
+            return new Coordinate(index.getRow() + isoSouthEastWest, index.getColumn() + 1);
         if(direction.Equals(Direction.South))
             return new Coordinate(index.getRow() + 1, index.getColumn());
         if(direction.Equals(Direction.SouthWest))
-            return new Coordinate(index.getRow() + 1, index.getColumn() - 1);
+            return new Coordinate(index.getRow() + isoSouthEastWest, index.getColumn() - 1);
         if(direction.Equals(Direction.NorthWest))
-            return new Coordinate(index.getRow() - 1, index.getColumn() - 1);
+            return new Coordinate(index.getRow() - isoNorthEastWest, index.getColumn() - 1);
 
         return null;
     }
