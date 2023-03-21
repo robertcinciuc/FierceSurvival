@@ -8,6 +8,7 @@ public class Map : MonoBehaviour {
     public int nbRegionsRow;
     public int nbRegionsCol;
     public BiomeManager biomeManager;
+    public FeatureManager featureManager;
 
     private float mapHalfWidth;
     private float mapHalfHeight;
@@ -18,6 +19,7 @@ public class Map : MonoBehaviour {
     void Start() {
         tiles = new Dictionary<int, GameObject>();
         biomeManager.setupBiomeMaterials();
+        featureManager.setupFeatureManager();
 
         Vector3 extents = GetComponent<Renderer>().bounds.extents;
         mapHalfWidth = extents.x;
@@ -38,7 +40,7 @@ public class Map : MonoBehaviour {
         Debug.Log("current index: " + currentRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn());
         Debug.Log("current feature north: " + currentRegion.getDirectionalFeature(Direction.North));
 
-        Region neighboringRegion = getNeighboringRegion(currentRegion, Direction.NortEast);
+        Region neighboringRegion = getNeighboringRegion(currentRegion, Direction.NorthEast);
         if (neighboringRegion == null) {
             Debug.Log("Neighbor doesn't exist");
         } else {
@@ -63,7 +65,7 @@ public class Map : MonoBehaviour {
                 Region region = tile.AddComponent<Region>();
                 ForestConiferous forestConiferous = tile.AddComponent<ForestConiferous>();
                 Coordinate coord = new Coordinate(j, i);
-                region.setupRegion(coord, forestConiferous, biomeManager.getMaterialsForBiome(forestConiferous.GetType()));
+                region.setupRegion(coord, forestConiferous, biomeManager.getMaterialsForBiome(forestConiferous.GetType()), featureManager);
                 setupHexagonRendering(tile, hexagonRadiusOut, j, i, region.getMaterial());
 
                 MeshCollider meshCollider = tile.AddComponent<MeshCollider>();
@@ -95,7 +97,7 @@ public class Map : MonoBehaviour {
     }
     
     private Region getNeighboringRegion(Region currentRegion, Direction direction) {
-        Coordinate neighborCoordinate = currentRegion.getNeighboringCoordinate(Direction.NortEast);
+        Coordinate neighborCoordinate = currentRegion.getNeighboringCoordinate(Direction.NorthEast);
         if (!tiles.ContainsKey(neighborCoordinate.GetHashCode())) {
             return null;
         }

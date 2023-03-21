@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Direction { North, NortEast, SouthEast, South, SouthWest, NorthWest };
+public enum Direction { North, NorthEast, SouthEast, South, SouthWest, NorthWest };
 
 public class Region : MonoBehaviour {
     
@@ -22,8 +22,8 @@ public class Region : MonoBehaviour {
     
     //Public methods
 
-    public void setupRegion(Coordinate index, Biome biome, List<Material> biomeMaterials){
-        setupDirectionalFeatures();
+    public void setupRegion(Coordinate index, Biome biome, List<Material> biomeMaterials, FeatureManager featureManager){
+        setupDirectionalFeatures(featureManager);
         this.index = index;
         this.biome = biome;
         this.material = biomeMaterials[0];
@@ -32,7 +32,7 @@ public class Region : MonoBehaviour {
     public Coordinate getNeighboringCoordinate(Direction direction) {
         if(direction.Equals(Direction.North))
             return new Coordinate(index.getRow() - 1, index.getColumn());
-        if(direction.Equals(Direction.NortEast))
+        if(direction.Equals(Direction.NorthEast))
             return new Coordinate(index.getRow() - 1, index.getColumn() + 1);
         if(direction.Equals(Direction.SouthEast))
             return new Coordinate(index.getRow(), index.getColumn() + 1);
@@ -64,12 +64,17 @@ public class Region : MonoBehaviour {
     
     // Private methods
     
-    private void setupDirectionalFeatures(){
+    private void setupDirectionalFeatures(FeatureManager featureManager){
         features = new Dictionary<Direction, Feature>();
+        System.Random randy = new System.Random();
+
         foreach (Direction direction in Enum.GetValues(typeof(Direction))) {
-            Valley feature = gameObject.AddComponent<Valley>();
-            feature.setupFeature();
-            features.Add(direction, feature);
+            int featureIndex = randy.Next(0, featureManager.getNbFeatures());
+
+            Type featureType = featureManager.getFeature(featureIndex);
+            Component feature = gameObject.AddComponent(featureType);
+            ((Feature)feature).setupFeature();
+            features.Add(direction, (Feature)feature);
         }
     }
 }
