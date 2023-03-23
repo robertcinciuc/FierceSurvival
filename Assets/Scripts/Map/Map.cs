@@ -26,6 +26,7 @@ public class Map : MonoBehaviour {
         mapHalfHeight = extents.y;
 
         setupTiles();
+        currentTile = tiles[new Coordinate(nbRegionsRow - 1, nbRegionsCol - 1).GetHashCode()];
     }
 
     void Update() {
@@ -63,9 +64,11 @@ public class Map : MonoBehaviour {
 
                 GameObject tile = new GameObject();
                 Region region = tile.AddComponent<Region>();
-                ForestConiferous forestConiferous = tile.AddComponent<ForestConiferous>();
+                
+                System.Type biomeType = prepareBiomeTypeForRegion(j, i);
+                Biome biome = tile.AddComponent<biomeType>();
                 Coordinate coord = new Coordinate(j, i);
-                region.setupRegion(coord, forestConiferous, biomeManager.getMaterialsForBiome(forestConiferous.GetType()), featureManager);
+                region.setupRegion(coord, biome, biomeManager.getMaterialsForBiome(biomeType));
                 setupHexagonRendering(tile, hexagonRadiusOut, j, i, region.getMaterial());
 
                 MeshCollider meshCollider = tile.AddComponent<MeshCollider>();
@@ -76,6 +79,14 @@ public class Map : MonoBehaviour {
                 
                 tiles.Add(coord.GetHashCode(), tile);
             }
+        }
+    }
+    
+    private System.Type prepareBiomeTypeForRegion(int row, int col){
+        if(row == 0 && col == 0){
+            return typeof(City);
+        }else{
+            return typeof(ForestConiferous);
         }
     }
 
