@@ -37,16 +37,21 @@ public class Map : MonoBehaviour {
     
     public void setCurrentTile(GameObject tile){
         currentTile = tile;
-        Region currentRegion = currentTile.GetComponent<Region>();
-        Debug.Log("current index: " + currentRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn());
-        Debug.Log("current feature north: " + currentRegion.getDirectionalFeature(Direction.North));
-
-        Region neighboringRegion = getNeighboringRegion(currentRegion, Direction.NorthEast);
-        if (neighboringRegion == null) {
-            Debug.Log("Neighbor doesn't exist");
-        } else {
-            Debug.Log("neighbor's index: " + neighboringRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn());
-            Debug.Log("neighbor's north feature: " + neighboringRegion.getDirectionalFeature(Direction.North));
+        Biome currentBiome = currentTile.GetComponent<Biome>();
+        if(currentBiome.GetType() == typeof(City)){
+            Debug.Log("Reached the city");
+        }else{
+            Region currentRegion = currentTile.GetComponent<Region>();
+            Debug.Log("current index: " + currentRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn());
+            Debug.Log("current feature north: " + currentRegion.getDirectionalFeature(Direction.North));
+    
+            Region neighboringRegion = getNeighboringRegion(currentRegion, Direction.NorthEast);
+            if (neighboringRegion == null) {
+                Debug.Log("Neighbor doesn't exist");
+            } else {
+                Debug.Log("neighbor's index: " + neighboringRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn());
+                Debug.Log("neighbor's north feature: " + neighboringRegion.getDirectionalFeature(Direction.North));
+            }
         }
     }
     
