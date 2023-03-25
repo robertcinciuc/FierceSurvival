@@ -17,20 +17,9 @@ public class Map : MonoBehaviour {
     private float tileZDelta = -0.1f;
 
     void Start() {
-        tiles = new Dictionary<int, GameObject>();
-        biomeManager.setupBiomeMaterials();
-        featureManager.setupFeatureManager();
-
-        Vector3 extents = GetComponent<Renderer>().bounds.extents;
-        mapHalfWidth = extents.x;
-        mapHalfHeight = extents.y;
-
-        setupTiles();
-        currentTile = tiles[new Coordinate(nbRegionsRow - 2, nbRegionsCol - 1).GetHashCode()];
     }
 
     void Update() {
-        
     }
     
     // Public methods
@@ -54,9 +43,22 @@ public class Map : MonoBehaviour {
             }
         }
     }
-    
+
+    public void setupMap() {
+        tiles = new Dictionary<int, GameObject>();
+        biomeManager.setupBiomeMaterials();
+        featureManager.setupFeatureManager();
+
+        Vector3 extents = GetComponent<Renderer>().bounds.extents;
+        mapHalfWidth = extents.x;
+        mapHalfHeight = extents.y;
+
+        setupTiles();
+        currentTile = tiles[new Coordinate(nbRegionsRow - 2, nbRegionsCol - 1).GetHashCode()];
+    }
+
     // Private methods
-    
+
     private void setupTiles() {
         float hexagonRadiusIn = mapHalfHeight / nbRegionsRow;
         float hexagonRadiusOut = hexagonRadiusIn / Mathf.Cos(Mathf.PI / 180f * 30);
