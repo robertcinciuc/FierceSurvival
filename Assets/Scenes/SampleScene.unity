@@ -266,7 +266,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forestConiferousMaterials:
-  - {fileID: 2100000, guid: fe18df1f5c8ba564da5c037f78b8e107, type: 2}
+  - {fileID: 2100000, guid: b550a95462eb6584ca7f1e2548f3dc8d, type: 2}
+  cityMaterials:
+  - {fileID: 2100000, guid: c868ee8e4ff69c948a52c4b9c2368503, type: 2}
 --- !u!4 &443830586
 Transform:
   m_ObjectHideFlags: 0

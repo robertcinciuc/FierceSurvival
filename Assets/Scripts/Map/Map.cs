@@ -26,7 +26,7 @@ public class Map : MonoBehaviour {
         mapHalfHeight = extents.y;
 
         setupTiles();
-        currentTile = tiles[new Coordinate(nbRegionsRow - 1, nbRegionsCol - 1).GetHashCode()];
+        currentTile = tiles[new Coordinate(nbRegionsRow - 2, nbRegionsCol - 1).GetHashCode()];
     }
 
     void Update() {
@@ -71,9 +71,10 @@ public class Map : MonoBehaviour {
                 Region region = tile.AddComponent<Region>();
                 
                 System.Type biomeType = prepareBiomeTypeForRegion(j, i);
-                Biome biome = tile.AddComponent<biomeType>();
+                Component biomeGenericComponent = tile.AddComponent(biomeType);
+                Biome biome = (Biome)biomeGenericComponent;
                 Coordinate coord = new Coordinate(j, i);
-                region.setupRegion(coord, biome, biomeManager.getMaterialsForBiome(biomeType));
+                region.setupRegion(coord, biome, biomeManager.getMaterialsForBiome(biomeType), featureManager);
                 setupHexagonRendering(tile, hexagonRadiusOut, j, i, region.getMaterial());
 
                 MeshCollider meshCollider = tile.AddComponent<MeshCollider>();
