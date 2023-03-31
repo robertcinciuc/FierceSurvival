@@ -6,9 +6,12 @@ public class World : MonoBehaviour {
     
     public Map map;
     public Camera worldCamera;
-
+    public UIWorldManager uiWorldManager;
+    
     void Start() {
         map.setupMap();
+
+        uiWorldManager.setup();
 
         worldCamera.GetComponent<AudioListener>().enabled = false;
         worldCamera.enabled = false;
