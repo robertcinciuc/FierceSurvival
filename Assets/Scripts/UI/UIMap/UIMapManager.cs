@@ -4,13 +4,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class UIWorldManager : MonoBehaviour {
+public class UIMapManager : MonoBehaviour {
     
     public Camera cameraMap;
     public Camera cameraWorld;
-    public Button lookAtMapButton;
+    public Button lookAtWorldButton;
     
-    private LookAtMap lookAtMap;
+    private LookAtWorld lookAtWorld;
     
     void Start(){
     }
@@ -19,8 +19,8 @@ public class UIWorldManager : MonoBehaviour {
     }
     
     public void setup(){
-        lookAtMap = gameObject.GetComponent<LookAtMap>();
-        lookAtMap.setup(cameraMap, cameraWorld);
+        lookAtWorld = gameObject.GetComponent<LookAtWorld>();
+        lookAtWorld.setup(cameraMap, cameraWorld);
     }
     
 }
