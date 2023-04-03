@@ -19,12 +19,12 @@ public class LookAtWorld : MonoBehaviour {
     public void setup(Camera cameraMap, Camera cameraWorld){
         this.cameraMap = cameraMap;
         this.cameraWorld = cameraWorld;
-        this.lookAtWorldButton = gameObject.GetComponenet<Button>();
+        this.lookAtWorldButton = gameObject.GetComponent<Button>();
         this.lookAtWorldButton.onClick.AddListener(lookAtWorld);
     }
 
     private void lookAtWorld() {
-        cameraMap.setInactive();
-        cameraWorld.setActive();
+        cameraMap.enabled = false;
+        cameraWorld.enabled = true;
     }
 }
