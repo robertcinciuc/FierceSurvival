@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
@@ -8,9 +8,6 @@ public class UIWorldManager : MonoBehaviour {
     
     public Camera cameraMap;
     public Camera cameraWorld;
-    public Button lookAtMapButton;
-    
-    private LookAtMap lookAtMap;
     
     void Start(){
     }
@@ -19,8 +16,19 @@ public class UIWorldManager : MonoBehaviour {
     }
     
     public void setup(){
-        lookAtMap = gameObject.GetComponent<LookAtMap>();
-        lookAtMap.setup(cameraMap, cameraWorld);
     }
-    
+
+    private void OnEnable() {
+        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+
+        Button lookAtMapButton = root.Q<Button>("lookAtMap");
+
+        lookAtMapButton.clicked += () => lookAtMap();
+    }
+
+    public void lookAtMap() {
+        cameraWorld.enabled = true;
+        cameraMap.enabled = false;
+    }
+
 }

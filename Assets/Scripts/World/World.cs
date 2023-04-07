@@ -10,13 +10,13 @@ public class World : MonoBehaviour {
     public UIMapManager uiMapManager;
         
     void Start() {
-        map.setupMap();
+        //map.setupMap();
 
-        uiWorldManager.setup();
-        uiMapManager.setup();
+        //uiWorldManager.setup();
+        //uiMapManager.setup();
         
-        worldCamera.GetComponent<AudioListener>().enabled = false;
-        worldCamera.enabled = false;
+        //worldCamera.GetComponent<AudioListener>().enabled = false;
+        //worldCamera.enabled = false;
     }
 
     void Update() {

@@ -23,7 +23,7 @@ public class LookAtMap : MonoBehaviour {
         this.lookAtMapButton.onClick.AddListener(lookAtMap);
     }
 
-    private void lookAtMap() {
+    public void lookAtMap() {
         cameraWorld.enabled = false;
         cameraMap.enabled = true;
     }
