@@ -8,8 +8,8 @@ public class Map : MonoBehaviour {
     public int nbRegionsRow;
     public int nbRegionsCol;
     public BiomeManager biomeManager;
-    public FeatureManager featureManager;
-
+    
+    private FeatureManager featureManager;
     private float mapHalfWidth;
     private float mapHalfHeight;
     private Dictionary<int, GameObject> tiles;
@@ -31,15 +31,15 @@ public class Map : MonoBehaviour {
             Debug.Log("Reached the city");
         }else{
             Region currentRegion = currentTile.GetComponent<Region>();
-            Debug.Log("current index: " + currentRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn());
-            Debug.Log("current feature north: " + currentRegion.getDirectionalFeature(Direction.North));
+            Debug.Log("current index: " + currentRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn() +
+                "current feature north: " + currentRegion.getDirectionalFeature(Direction.North));
     
             Region neighboringRegion = getNeighboringRegion(currentRegion, Direction.NorthEast);
             if (neighboringRegion == null) {
                 Debug.Log("Neighbor doesn't exist");
             } else {
-                Debug.Log("neighbor's index: " + neighboringRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn());
-                Debug.Log("neighbor's north feature: " + neighboringRegion.getDirectionalFeature(Direction.North));
+                Debug.Log("neighbor's index: " + neighboringRegion.getIndex().getRow() + " " + neighboringRegion.getIndex().getColumn() +
+                    "neighbor's north feature: " + neighboringRegion.getDirectionalFeature(Direction.North));
             }
         }
     }
@@ -47,6 +47,7 @@ public class Map : MonoBehaviour {
     public void setupMap() {
         tiles = new Dictionary<int, GameObject>();
         biomeManager.setupBiomeMaterials();
+        featureManager = gameObject.AddComponent<FeatureManager>();
         featureManager.setupFeatureManager();
 
         Vector3 extents = GetComponent<Renderer>().bounds.extents;
