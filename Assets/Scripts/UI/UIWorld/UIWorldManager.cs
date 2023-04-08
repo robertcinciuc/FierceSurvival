@@ -8,18 +8,19 @@ public class UIWorldManager : MonoBehaviour {
     
     public Camera cameraMap;
     public Camera cameraWorld;
-    
+    public UIMapManager uiMapManager;
+
+    private VisualElement root;
+
     void Start(){
     }
 
     void Update(){
     }
     
-    public void setup(){
-    }
-
     private void OnEnable() {
-        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+        root = GetComponent<UIDocument>().rootVisualElement;
+        root.visible = false;
 
         Button lookAtMapButton = root.Q<Button>("lookAtMap");
 
@@ -27,8 +28,14 @@ public class UIWorldManager : MonoBehaviour {
     }
 
     public void lookAtMap() {
-        cameraWorld.enabled = true;
-        cameraMap.enabled = false;
+        cameraWorld.enabled = false;
+        cameraMap.enabled = true;
+        root.visible = false;
+        uiMapManager.enableMapUI();
+    }
+
+    public void enableWorldUI() {
+        root.visible = true;
     }
 
 }
