@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="/Assets/NavigationButton.uss" />
+    <ui:VisualElement style="height: 760px;">
+        <ui:VisualElement name="SwitchView" style="height: 82px;">
+            <ui:Button text="Button" display-tooltip-when-elided="true" name="lookAtMap" style="height: 67px; width: 84px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Navigate" style="flex-direction: row; justify-content: center; height: 61px;">
+            <ui:Button text="GoNorth" display-tooltip-when-elided="true" name="GoNorth" class="button" style="height: auto;" />
+            <ui:Button text="GoNorthEast" display-tooltip-when-elided="true" name="GoNorthEast" class="button" />
+            <ui:Button text="GoSouthEast" display-tooltip-when-elided="true" name="GoSouthEast" class="button" />
+            <ui:Button text="GoSouth" display-tooltip-when-elided="true" name="GoSouth" class="button" />
+            <ui:Button text="GoSouthWest" display-tooltip-when-elided="true" name="GoSouthWest" class="button" />
+            <ui:Button text="GoNorthWest" display-tooltip-when-elided="true" name="GoNorthWest" class="button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

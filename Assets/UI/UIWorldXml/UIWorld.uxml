@@ -1,7 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement style="height: 760px;">
-        <ui:VisualElement name="UIWorld" style="height: 652px;">
-            <ui:Button text="Button" display-tooltip-when-elided="true" name="lookAtMap" style="height: 67px; width: 84px;" />
-        </ui:VisualElement>
-    </ui:VisualElement>
-</ui:UXML>
