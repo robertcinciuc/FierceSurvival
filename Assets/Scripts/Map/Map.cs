@@ -8,6 +8,7 @@ public class Map : MonoBehaviour {
     public int nbRegionsRow;
     public int nbRegionsCol;
     public BiomeManager biomeManager;
+    public PlayerStatus playerStatus;
     
     private FeatureManager featureManager;
     private float mapHalfWidth;
@@ -27,14 +28,17 @@ public class Map : MonoBehaviour {
     public void setCurrentTile(GameObject tile){
         currentTile = tile;
         Biome currentBiome = currentTile.GetComponent<Biome>();
-        if(currentBiome.GetType() == typeof(City)){
+        playerStatus.setCurrentRegion(currentTile.GetComponent<Region>());
+
+        if (currentBiome.GetType() == typeof(City)){
             Debug.Log("Reached the city");
         }else{
             Region currentRegion = currentTile.GetComponent<Region>();
             Debug.Log("current index: " + currentRegion.getIndex().getRow() + " " + currentRegion.getIndex().getColumn() +
                 "current feature north: " + currentRegion.getDirectionalFeature(Direction.North));
     
-            Region neighboringRegion = getNeighboringRegion(currentRegion, Direction.NorthEast);
+            GameObject neighboringTile = getNeighboringTile(currentRegion, Direction.NorthEast);
+            Region neighboringRegion = neighboringTile.GetComponent<Region>();
             if (neighboringRegion == null) {
                 Debug.Log("Neighbor doesn't exist");
             } else {
@@ -56,6 +60,16 @@ public class Map : MonoBehaviour {
 
         setupTiles();
         currentTile = tiles[new Coordinate(nbRegionsRow - 2, nbRegionsCol - 1).GetHashCode()];
+    }
+
+    public Region goToNeighboringRegion(Direction direction) {
+        Region currentRegion = currentTile.GetComponent<Region>();
+        currentTile = getNeighboringTile(currentRegion, direction);
+        return currentTile.GetComponent<Region>();
+    }
+
+    public Region getCurrentRegion() {
+        return currentTile.GetComponent<Region>();
     }
 
     // Private methods
@@ -116,13 +130,12 @@ public class Map : MonoBehaviour {
         tile.transform.position = new Vector3(xPos, yPos, gameObject.transform.position.z + tileZDelta);
     }
     
-    private Region getNeighboringRegion(Region currentRegion, Direction direction) {
-        Coordinate neighborCoordinate = currentRegion.getNeighboringCoordinate(Direction.NorthEast);
+    private GameObject getNeighboringTile(Region currentRegion, Direction direction) {
+        Coordinate neighborCoordinate = currentRegion.getNeighboringCoordinate(direction);
         if (!tiles.ContainsKey(neighborCoordinate.GetHashCode())) {
             return null;
         }
-        GameObject neighboringTile = tiles[neighborCoordinate.GetHashCode()];
-        return neighboringTile.GetComponent<Region>();
+        return tiles[neighborCoordinate.GetHashCode()];
     }
 
 }
