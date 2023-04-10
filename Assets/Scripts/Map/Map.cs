@@ -64,7 +64,12 @@ public class Map : MonoBehaviour {
 
     public Region goToNeighboringRegion(Direction direction) {
         Region currentRegion = currentTile.GetComponent<Region>();
-        currentTile = getNeighboringTile(currentRegion, direction);
+
+        GameObject newCurrentTile = getNeighboringTile(currentRegion, direction);
+        if(newCurrentTile != null) {
+            currentTile = newCurrentTile;
+        }
+
         return currentTile.GetComponent<Region>();
     }
 
