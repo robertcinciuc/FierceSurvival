@@ -27,7 +27,22 @@ public class UIWorldManager : MonoBehaviour {
         lookAtMapButton.clicked += () => lookAtMap();
 
         Button goNorthButton = root.Q<Button>("GoNorth");
-        goNorthButton.clicked += () => goNorth();
+        goNorthButton.clicked += () => goIntoDirection(Direction.North);
+
+        Button goNorthEastButton = root.Q<Button>("GoNorthEast");
+        goNorthEastButton.clicked += () => goIntoDirection(Direction.NorthEast);
+
+        Button goSouthEastButton = root.Q<Button>("GoSouthEast");
+        goSouthEastButton.clicked += () => goIntoDirection(Direction.SouthEast);
+
+        Button goSouthButton = root.Q<Button>("GoSouth");
+        goSouthButton.clicked += () => goIntoDirection(Direction.South);
+
+        Button goSouthWestButton = root.Q<Button>("GoSouthWest");
+        goSouthWestButton.clicked += () => goIntoDirection(Direction.SouthWest);
+
+        Button goNorthWestButton = root.Q<Button>("GoNorthWest");
+        goNorthWestButton.clicked += () => goIntoDirection(Direction.NorthWest);
     }
 
     //Public methods
@@ -45,8 +60,8 @@ public class UIWorldManager : MonoBehaviour {
         uiMapManager.enableMapUI();
     }
 
-    private void goNorth() {
-        playerStatus.goToNeighboringRegion(Direction.North);
+    private void goIntoDirection(Direction direction) {
+        playerStatus.goToNeighboringRegion(direction);
     }
 
 }
