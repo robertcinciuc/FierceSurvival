@@ -43,6 +43,9 @@ public class UIWorldManager : MonoBehaviour {
 
         Button goNorthWestButton = root.Q<Button>("GoNorthWest");
         goNorthWestButton.clicked += () => goIntoDirection(Direction.NorthWest);
+
+        VisualElement energyBarOverlay = root.Q("EnergyBarOverlay");
+        energyBarOverlay.style.width = new StyleLength(Length.Percent(90));
     }
 
     //Public methods
