@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour {
 
     public Map map;
+    public int maxEnergy = 100;
 
     private Region currentRegion;
     private int energy;
@@ -31,11 +32,18 @@ public class PlayerStatus : MonoBehaviour {
         }
 
         energy -= 30;
+        if (energy <= 0) {
+            energy = 0;
+        }
         currentRegion = map.goToNeighboringRegion(direction);
     }
 
     public void setCurrentRegion(Region currentRegion) {
         this.currentRegion = currentRegion;
+    }
+
+    public float getEnergyPercentage() {
+        return 100f * energy / maxEnergy;
     }
 
     //Private methods
