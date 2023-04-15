@@ -13,9 +13,9 @@
             <ui:Button text="GoNorthWest" display-tooltip-when-elided="true" name="GoNorthWest" class="button" />
         </ui:VisualElement>
         <ui:VisualElement name="Status" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-            <ui:VisualElement name="EnergyBar" style="height: 29px;">
-                <ui:VisualElement name="EnergyBarBackground" class="progressBar--background" style="flex-grow: 1; height: 319px; width: 777px;">
-                    <ui:VisualElement name="EnergyBarOverlay" class="progressBar--overlay" style="width: 50%; height: 100%;" />
+            <ui:VisualElement name="NourishmentBar" style="height: 29px;">
+                <ui:VisualElement name="NourishmentBarBackground" class="progressBar--background" style="flex-grow: 1; height: 319px; width: 777px;">
+                    <ui:VisualElement name="NourishmentBarOverlay" class="progressBar--overlay" style="width: 50%; height: 100%;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

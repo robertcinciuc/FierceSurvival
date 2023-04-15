@@ -12,7 +12,7 @@ public class UIWorldManager : MonoBehaviour {
     public PlayerStatus playerStatus;
 
     private VisualElement root;
-    private VisualElement energyBarOverlay;
+    private VisualElement nourishmentBarOverlay;
 
     void Start(){
     }
@@ -45,8 +45,8 @@ public class UIWorldManager : MonoBehaviour {
         Button goNorthWestButton = root.Q<Button>("GoNorthWest");
         goNorthWestButton.clicked += () => goIntoDirection(Direction.NorthWest);
 
-        energyBarOverlay = root.Q("EnergyBarOverlay");
-        energyBarOverlay.style.width = new StyleLength(Length.Percent(100));
+        nourishmentBarOverlay = root.Q("NourishmentBarOverlay");
+        nourishmentBarOverlay.style.width = new StyleLength(Length.Percent(100));
     }
 
     //Public methods
@@ -66,12 +66,12 @@ public class UIWorldManager : MonoBehaviour {
 
     private void goIntoDirection(Direction direction) {
         playerStatus.goToNeighboringRegion(direction);
-        updateEnergyUI();
+        updateNourishmentUI();
     }
 
-    private void updateEnergyUI() {
-        float energyPercentage = playerStatus.getEnergyPercentage();
-        energyBarOverlay.style.width = new StyleLength(Length.Percent(energyPercentage));
+    private void updateNourishmentUI() {
+        float nourishmentPercentage = playerStatus.getNourishmentPercentage();
+        nourishmentBarOverlay.style.width = new StyleLength(Length.Percent(nourishmentPercentage));
     }
 
 }

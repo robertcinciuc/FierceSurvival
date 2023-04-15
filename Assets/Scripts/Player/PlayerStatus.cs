@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour {
 
     public Map map;
-    public int maxEnergy = 100;
+    public int maxNourishment = 100;
 
     private Region currentRegion;
-    private int energy;
+    private int nourishment;
 
     void Start() {
         
@@ -22,18 +22,18 @@ public class PlayerStatus : MonoBehaviour {
 
     public void setup(Region currentRegion) {
         this.currentRegion = currentRegion;
-        this.energy = 100;
+        this.nourishment = 100;
     }
 
     public void goToNeighboringRegion(Direction direction) {
-        if(energy <= 0) {
-            markGameOver("loss of energy");
+        if(nourishment <= 0) {
+            markGameOver("too little nourishment");
             return;
         }
 
-        energy -= 30;
-        if (energy <= 0) {
-            energy = 0;
+        nourishment -= 30;
+        if (nourishment <= 0) {
+            nourishment = 0;
         }
         currentRegion = map.goToNeighboringRegion(direction);
     }
@@ -42,8 +42,8 @@ public class PlayerStatus : MonoBehaviour {
         this.currentRegion = currentRegion;
     }
 
-    public float getEnergyPercentage() {
-        return 100f * energy / maxEnergy;
+    public float getNourishmentPercentage() {
+        return 100f * nourishment / maxNourishment;
     }
 
     //Private methods
