@@ -10,6 +10,7 @@ public class UIInventoryManager : MonoBehaviour {
     public Inventory inventory;
 
     private VisualElement root;
+    private Label nbNourishmentItems;
 
     void Start() {
     }
@@ -23,7 +24,10 @@ public class UIInventoryManager : MonoBehaviour {
 
         Button nourishmentItemButton = root.Q<Button>("NourishmentItem");
         nourishmentItemButton.clicked += () => feedPlayer();
-        
+
+        nbNourishmentItems = root.Q<Label>("NbNourishmentItems");
+        nbNourishmentItems.text = inventory.getNbNourishmentItems().ToString();
+
         Button lookAtWorldButton = root.Q<Button>("LookAtWorld");
         lookAtWorldButton.clicked += () => lookAtWorld();
     }
@@ -38,8 +42,15 @@ public class UIInventoryManager : MonoBehaviour {
     //Private methods
 
     private void feedPlayer() {
+        if(inventory.getNbNourishmentItems() <= 0) {
+            Debug.Log("No jerky left");
+            return;
+        }
+
         playerStatus.feedPlayer(20);
+        inventory.consumeNourishmentItem(typeof(Jerky), 1);
         uiWorldManager.updateNourishmentUI();
+        nbNourishmentItems.text = inventory.getNbNourishmentItems().ToString();
     }
 
     public void lookAtWorld() {

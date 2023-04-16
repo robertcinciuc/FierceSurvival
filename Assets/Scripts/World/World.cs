@@ -8,7 +8,7 @@ public class World : MonoBehaviour {
     public Camera worldCamera;
     public Player player;
         
-    void Start() {
+    void OnEnable() {
         map.setupMap();
 
         worldCamera.GetComponent<AudioListener>().enabled = false;

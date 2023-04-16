@@ -1,7 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="/Assets/ButtonStyle.uss" />
     <ui:VisualElement name="Background" style="height: 576px; background-color: rgb(70, 45, 31);">
-        <ui:Button text="NourishmentItem" display-tooltip-when-elided="true" name="NourishmentItem" class="nourishment-item" />
+        <ui:VisualElement name="NourishmentItems" style="width: 129px; align-items: center;">
+            <ui:Button text="NourishmentItem" display-tooltip-when-elided="true" name="NourishmentItem" class="nourishment-item" style="align-items: stretch;" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="NbNourishmentItems" style="align-items: stretch; width: 141px; -unity-text-align: upper-center;" />
+        </ui:VisualElement>
         <ui:VisualElement name="NavigationBar">
             <ui:Button text="LookAtWWorld" display-tooltip-when-elided="true" name="LookAtWorld" class="view-navigation" style="width: 100px;" />
         </ui:VisualElement>
