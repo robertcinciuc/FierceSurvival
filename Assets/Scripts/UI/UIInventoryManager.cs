@@ -7,6 +7,7 @@ public class UIInventoryManager : MonoBehaviour {
 
     public PlayerStatus playerStatus;
     public UIWorldManager uiWorldManager;
+    public Inventory inventory;
 
     private VisualElement root;
 

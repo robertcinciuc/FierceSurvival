@@ -6,14 +6,14 @@ public class World : MonoBehaviour {
     
     public Map map;
     public Camera worldCamera;
-    public PlayerStatus playerStatus;
+    public Player player;
         
     void Start() {
         map.setupMap();
 
         worldCamera.GetComponent<AudioListener>().enabled = false;
         worldCamera.enabled = false;
-        playerStatus.setup(map.getCurrentRegion());
+        player.setup(map.getCurrentRegion());
     }
 
     void Update() {

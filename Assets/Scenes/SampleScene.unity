@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 169260761}
   - component: {fileID: 169260760}
+  - component: {fileID: 169260762}
+  - component: {fileID: 169260763}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -168,6 +170,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &169260762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169260759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba15982436d638b4786acb0109ae046f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &169260763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169260759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d200b5edaced27e429491babb529412e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStatus: {fileID: 169260760}
+  inventory: {fileID: 169260762}
 --- !u!1 &293050805
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStatus: {fileID: 169260760}
   uiWorldManager: {fileID: 1736635738}
+  inventory: {fileID: 169260762}
 --- !u!1 &295085290
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 295085295}
   worldCamera: {fileID: 394019332}
-  playerStatus: {fileID: 169260760}
+  player: {fileID: 169260763}
 --- !u!1 &1736635735
 GameObject:
   m_ObjectHideFlags: 0
