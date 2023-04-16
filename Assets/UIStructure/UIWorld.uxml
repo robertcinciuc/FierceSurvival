@@ -1,16 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="/Assets/UIWorldStyle.uss" />
+    <Style src="/Assets/ButtonStyle.uss" />
+    <Style src="/Assets/PlayerStatusStyle.uss" />
     <ui:VisualElement style="height: 760px;">
         <ui:VisualElement name="SwitchView" style="height: 82px;">
-            <ui:Button text="LookAtMap" display-tooltip-when-elided="true" name="LookAtMap" style="height: 67px; width: 84px;" />
+            <ui:Button text="LookAtMap" display-tooltip-when-elided="true" name="LookAtMap" class="view-navigation" style="height: 67px; width: 84px;" />
         </ui:VisualElement>
         <ui:VisualElement name="Navigate" style="flex-direction: row; justify-content: center; height: 61px;">
-            <ui:Button text="GoNorth" display-tooltip-when-elided="true" name="GoNorth" class="button" style="height: auto;" />
-            <ui:Button text="GoNorthEast" display-tooltip-when-elided="true" name="GoNorthEast" class="button" />
-            <ui:Button text="GoSouthEast" display-tooltip-when-elided="true" name="GoSouthEast" class="button" />
-            <ui:Button text="GoSouth" display-tooltip-when-elided="true" name="GoSouth" class="button" />
-            <ui:Button text="GoSouthWest" display-tooltip-when-elided="true" name="GoSouthWest" class="button" />
-            <ui:Button text="GoNorthWest" display-tooltip-when-elided="true" name="GoNorthWest" class="button" />
+            <ui:Button text="GoNorth" display-tooltip-when-elided="true" name="GoNorth" class="button navigation" style="height: auto;" />
+            <ui:Button text="GoNorthEast" display-tooltip-when-elided="true" name="GoNorthEast" class="button navigation" />
+            <ui:Button text="GoSouthEast" display-tooltip-when-elided="true" name="GoSouthEast" class="button navigation" />
+            <ui:Button text="GoSouth" display-tooltip-when-elided="true" name="GoSouth" class="button navigation" />
+            <ui:Button text="GoSouthWest" display-tooltip-when-elided="true" name="GoSouthWest" class="button navigation" />
+            <ui:Button text="GoNorthWest" display-tooltip-when-elided="true" name="GoNorthWest" class="button navigation" />
         </ui:VisualElement>
         <ui:VisualElement name="Status" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
             <ui:VisualElement name="NourishmentBar" style="height: 29px;">
@@ -20,7 +21,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Inventory">
-            <ui:Button text="LookAtInventory" display-tooltip-when-elided="true" name="LookAtInventory" class="button" style="width: 100px;" />
+            <ui:Button text="LookAtInventory" display-tooltip-when-elided="true" name="LookAtInventory" class="button view-navigation" style="width: 100px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

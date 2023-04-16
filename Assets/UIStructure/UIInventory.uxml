@@ -1,10 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="/Assets/UIInventoryStyle.uss" />
-    <Style src="/Assets/UIWorldStyle.uss" />
-    <ui:VisualElement name="Background" style="height: 576px; background-color: rgba(70, 45, 31, 255);">
-        <ui:Button text="NourishmentItem" display-tooltip-when-elided="true" name="NourishmentItem" class="button" />
+    <Style src="/Assets/ButtonStyle.uss" />
+    <ui:VisualElement name="Background" style="height: 576px; background-color: rgb(70, 45, 31);">
+        <ui:Button text="NourishmentItem" display-tooltip-when-elided="true" name="NourishmentItem" class="nourishment-item" />
         <ui:VisualElement name="NavigationBar">
-            <ui:Button text="LookAtWWorld" display-tooltip-when-elided="true" name="LookAtWorld" class="button" style="width: 100px;" />
+            <ui:Button text="LookAtWWorld" display-tooltip-when-elided="true" name="LookAtWorld" class="view-navigation" style="width: 100px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
