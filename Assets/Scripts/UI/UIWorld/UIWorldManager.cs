@@ -9,6 +9,7 @@ public class UIWorldManager : MonoBehaviour {
     public Camera cameraMap;
     public Camera cameraWorld;
     public UIMapManager uiMapManager;
+    public UIInventoryManager uiInventoryManager;
     public PlayerStatus playerStatus;
 
     private VisualElement root;
@@ -47,12 +48,21 @@ public class UIWorldManager : MonoBehaviour {
 
         nourishmentBarOverlay = root.Q("NourishmentBarOverlay");
         nourishmentBarOverlay.style.width = new StyleLength(Length.Percent(100));
+
+        Button lookAtInventoryButton = root.Q<Button>("LookAtInventory");
+        lookAtInventoryButton.clicked += () => lookAtInventory();
+
     }
 
     //Public methods
 
     public void enableWorldUI() {
         root.visible = true;
+    }
+
+    public void updateNourishmentUI() {
+        float nourishmentPercentage = playerStatus.getNourishmentPercentage();
+        nourishmentBarOverlay.style.width = new StyleLength(Length.Percent(nourishmentPercentage));
     }
 
     //Private methods
@@ -69,9 +79,9 @@ public class UIWorldManager : MonoBehaviour {
         updateNourishmentUI();
     }
 
-    private void updateNourishmentUI() {
-        float nourishmentPercentage = playerStatus.getNourishmentPercentage();
-        nourishmentBarOverlay.style.width = new StyleLength(Length.Percent(nourishmentPercentage));
+    private void lookAtInventory() {
+        root.visible = false;
+        uiInventoryManager.enableInventoryUI();
     }
 
 }

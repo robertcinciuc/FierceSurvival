@@ -46,6 +46,15 @@ public class PlayerStatus : MonoBehaviour {
         return 100f * nourishment / maxNourishment;
     }
 
+    public void feedPlayer(int feedPoints) {
+        if (this.nourishment + feedPoints > maxNourishment) {
+            this.nourishment = maxNourishment;
+            return;
+        }
+
+        this.nourishment += feedPoints;
+    }
+
     //Private methods
 
     private void markGameOver(string reason) {
