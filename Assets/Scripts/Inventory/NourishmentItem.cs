@@ -4,5 +4,4 @@ using UnityEngine;
 
 public abstract class NourishmentItem : Object {
 
-    public abstract int getNourishmentValue();
 }

@@ -24,15 +24,13 @@ public class Inventory : MonoBehaviour {
         items[typeof(Jerky)].Add(new Jerky());
     }
 
-    public int getNbNourishmentItems() {
-        return items[typeof(Jerky)].Count;
+    public int getNbNourishmentItems(System.Type nourishmentType) {
+        return items[nourishmentType].Count;
     }
 
-    public void consumeNourishmentItem(System.Type nourishmentItemType, int nbConsumed) {
-        for (int i = 0; i < nbConsumed; i++) {
-            if (items[nourishmentItemType].Count > 0) {
-                items[nourishmentItemType].RemoveAt(0);
-            }
+    public void consumeNourishmentItem(System.Type nourishmentItemType) {
+        if (items[nourishmentItemType].Count > 0) {
+            items[nourishmentItemType].RemoveAt(0);
         }
     }
 

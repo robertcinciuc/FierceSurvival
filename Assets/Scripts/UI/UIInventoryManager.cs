@@ -10,7 +10,7 @@ public class UIInventoryManager : MonoBehaviour {
     public Inventory inventory;
 
     private VisualElement root;
-    private Label nbNourishmentItems;
+    private Label nbJerky;
 
     void Start() {
     }
@@ -22,11 +22,11 @@ public class UIInventoryManager : MonoBehaviour {
         root = GetComponent<UIDocument>().rootVisualElement;
         root.visible = false;
 
-        Button nourishmentItemButton = root.Q<Button>("NourishmentItem");
-        nourishmentItemButton.clicked += () => feedPlayer();
+        Button consumeJerkyButton = root.Q<Button>("Jerky");
+        consumeJerkyButton.clicked += () => feedPlayer(typeof(Jerky));
 
-        nbNourishmentItems = root.Q<Label>("NbNourishmentItems");
-        nbNourishmentItems.text = inventory.getNbNourishmentItems().ToString();
+        nbJerky = root.Q<Label>("NbJerky");
+        nbJerky.text = inventory.getNbNourishmentItems(typeof(Jerky)).ToString();
 
         Button lookAtWorldButton = root.Q<Button>("LookAtWorld");
         lookAtWorldButton.clicked += () => lookAtWorld();
@@ -41,16 +41,16 @@ public class UIInventoryManager : MonoBehaviour {
 
     //Private methods
 
-    private void feedPlayer() {
-        if(inventory.getNbNourishmentItems() <= 0) {
-            Debug.Log("No jerky left");
+    private void feedPlayer(System.Type nourishmentType) {
+        if(inventory.getNbNourishmentItems(nourishmentType) <= 0) {
+            Debug.Log("No " + nourishmentType + " left");
             return;
         }
 
-        playerStatus.feedPlayer(20);
-        inventory.consumeNourishmentItem(typeof(Jerky), 1);
+        playerStatus.feedPlayer(Jerky.nourishmentValue);
+        inventory.consumeNourishmentItem(nourishmentType);
         uiWorldManager.updateNourishmentUI();
-        nbNourishmentItems.text = inventory.getNbNourishmentItems().ToString();
+        nbJerky.text = inventory.getNbNourishmentItems(nourishmentType).ToString();
     }
 
     public void lookAtWorld() {
