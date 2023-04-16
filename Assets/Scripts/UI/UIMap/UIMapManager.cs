@@ -22,7 +22,7 @@ public class UIMapManager : MonoBehaviour {
         root = GetComponent<UIDocument>().rootVisualElement;
         root.visible = true;
 
-        Button lookAtMapButton = root.Q<Button>("lookAtWorld");
+        Button lookAtMapButton = root.Q<Button>("LookAtWorld");
 
         lookAtMapButton.clicked += () => lookAtWorld();
     }

@@ -2,7 +2,7 @@
     <Style src="/Assets/UIWorldStyle.uss" />
     <ui:VisualElement style="height: 760px;">
         <ui:VisualElement name="SwitchView" style="height: 82px;">
-            <ui:Button text="Button" display-tooltip-when-elided="true" name="lookAtMap" style="height: 67px; width: 84px;" />
+            <ui:Button text="LookAtMap" display-tooltip-when-elided="true" name="LookAtMap" style="height: 67px; width: 84px;" />
         </ui:VisualElement>
         <ui:VisualElement name="Navigate" style="flex-direction: row; justify-content: center; height: 61px;">
             <ui:Button text="GoNorth" display-tooltip-when-elided="true" name="GoNorth" class="button" style="height: auto;" />

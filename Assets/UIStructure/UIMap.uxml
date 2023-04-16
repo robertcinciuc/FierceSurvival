@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="root" style="height: 507px;">
         <ui:VisualElement name="containerSth" style="height: 485px;">
-            <ui:Button text="Button" display-tooltip-when-elided="true" name="lookAtWorld" style="height: 35px; width: 144px;" />
+            <ui:Button text="LookAtWorld" display-tooltip-when-elided="true" name="LookAtWorld" style="height: 35px; width: 144px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

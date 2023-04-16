@@ -25,7 +25,7 @@ public class UIWorldManager : MonoBehaviour {
         root = GetComponent<UIDocument>().rootVisualElement;
         root.visible = false;
 
-        Button lookAtMapButton = root.Q<Button>("lookAtMap");
+        Button lookAtMapButton = root.Q<Button>("LookAtMap");
         lookAtMapButton.clicked += () => lookAtMap();
 
         Button goNorthButton = root.Q<Button>("GoNorth");
