@@ -73,6 +73,11 @@ public class Map : MonoBehaviour {
         return currentTile.GetComponent<Region>();
     }
 
+    public Feature exploreDirection(Direction direction) {
+        Region currentRegion = currentTile.GetComponent<Region>();
+        return currentRegion.getDirectionalFeature(direction);
+    }
+
     public Region getCurrentRegion() {
         return currentTile.GetComponent<Region>();
     }

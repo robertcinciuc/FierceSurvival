@@ -6,12 +6,20 @@
             <ui:Button text="LookAtMap" display-tooltip-when-elided="true" name="LookAtMap" class="view-navigation" style="height: 67px; width: 84px;" />
         </ui:VisualElement>
         <ui:VisualElement name="Navigate" style="flex-direction: row; justify-content: center; height: 61px;">
-            <ui:Button text="GoNorth" display-tooltip-when-elided="true" name="GoNorth" class="button navigation" style="height: auto;" />
+            <ui:Button text="GoNorth" display-tooltip-when-elided="true" name="GoNorth" class="button navigation" style="height: 50px;" />
             <ui:Button text="GoNorthEast" display-tooltip-when-elided="true" name="GoNorthEast" class="button navigation" />
             <ui:Button text="GoSouthEast" display-tooltip-when-elided="true" name="GoSouthEast" class="button navigation" />
             <ui:Button text="GoSouth" display-tooltip-when-elided="true" name="GoSouth" class="button navigation" />
             <ui:Button text="GoSouthWest" display-tooltip-when-elided="true" name="GoSouthWest" class="button navigation" />
             <ui:Button text="GoNorthWest" display-tooltip-when-elided="true" name="GoNorthWest" class="button navigation" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Explore" style="flex-direction: row; justify-content: center; height: 61px;">
+            <ui:Button text="ExN" display-tooltip-when-elided="true" name="ExploreNorth" class="button navigation exploration" style="height: 50px;" />
+            <ui:Button text="ExNE" display-tooltip-when-elided="true" name="ExploreNorthEast" class="button navigation exploration" />
+            <ui:Button text="ExSE" display-tooltip-when-elided="true" name="ExploreSouthEast" class="button navigation exploration" />
+            <ui:Button text="ExS" display-tooltip-when-elided="true" name="ExploreSouth" class="button navigation exploration" />
+            <ui:Button text="ExSW" display-tooltip-when-elided="true" name="ExploreSouthWest" class="button navigation exploration" />
+            <ui:Button text="ExNW" display-tooltip-when-elided="true" name="ExploreNorthWest" class="button navigation exploration" />
         </ui:VisualElement>
         <ui:VisualElement name="Status" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
             <ui:VisualElement name="NourishmentBar" style="height: 29px;">

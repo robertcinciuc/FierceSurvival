@@ -37,6 +37,19 @@ public class PlayerStatus : MonoBehaviour {
         }
         currentRegion = map.goToNeighboringRegion(direction);
     }
+    
+    public Feature exploreDirection(Direction direction) {
+        if(nourishment <= 0) {
+            markGameOver("too little nourishment to explore");
+            return null;
+        }
+
+        nourishment -= 10;
+        if (nourishment <= 0) {
+            nourishment = 0;
+        }
+        return map.exploreDirection(direction);
+    }
 
     public void setCurrentRegion(Region currentRegion) {
         this.currentRegion = currentRegion;

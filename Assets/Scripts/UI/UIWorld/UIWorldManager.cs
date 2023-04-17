@@ -28,6 +28,7 @@ public class UIWorldManager : MonoBehaviour {
         Button lookAtMapButton = root.Q<Button>("LookAtMap");
         lookAtMapButton.clicked += () => lookAtMap();
 
+        //Navigation
         Button goNorthButton = root.Q<Button>("GoNorth");
         goNorthButton.clicked += () => goIntoDirection(Direction.North);
 
@@ -45,6 +46,25 @@ public class UIWorldManager : MonoBehaviour {
 
         Button goNorthWestButton = root.Q<Button>("GoNorthWest");
         goNorthWestButton.clicked += () => goIntoDirection(Direction.NorthWest);
+
+        //Exploration
+        Button exploreNorthButton = root.Q<Button>("ExploreNorth");
+        exploreNorthButton.clicked += () => exploreDirection(Direction.North);
+
+        Button exploreNorthEastButton = root.Q<Button>("ExploreNorthEast");
+        exploreNorthEastButton.clicked += () => exploreDirection(Direction.NorthEast);
+
+        Button exploreSouthEastButton = root.Q<Button>("ExploreSouthEast");
+        exploreSouthEastButton.clicked += () => exploreDirection(Direction.SouthEast);
+
+        Button exploreSouthButton = root.Q<Button>("ExploreSouth");
+        exploreSouthButton.clicked += () => exploreDirection(Direction.South);
+
+        Button exploreSouthWestButton = root.Q<Button>("ExploreSouthWest");
+        exploreSouthWestButton.clicked += () => exploreDirection(Direction.SouthWest);
+
+        Button exploreNorthWestButton = root.Q<Button>("ExploreNorthWest");
+        exploreNorthWestButton.clicked += () => exploreDirection(Direction.NorthWest);
 
         nourishmentBarOverlay = root.Q("NourishmentBarOverlay");
         nourishmentBarOverlay.style.width = new StyleLength(Length.Percent(100));
@@ -82,6 +102,12 @@ public class UIWorldManager : MonoBehaviour {
     private void lookAtInventory() {
         root.visible = false;
         uiInventoryManager.enableInventoryUI();
+    }
+
+    private void exploreDirection(Direction direction) {
+        Feature feature = playerStatus.exploreDirection(direction);
+        updateNourishmentUI();
+        Debug.Log("Explored " + direction + "; found feature: " + feature.getName());
     }
 
 }
