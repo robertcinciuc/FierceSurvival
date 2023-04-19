@@ -11,6 +11,7 @@ public class UIWorldManager : MonoBehaviour {
     public UIMapManager uiMapManager;
     public UIInventoryManager uiInventoryManager;
     public PlayerStatus playerStatus;
+    public World world;
 
     private VisualElement root;
     private VisualElement nourishmentBarOverlay;
@@ -106,8 +107,12 @@ public class UIWorldManager : MonoBehaviour {
 
     private void exploreDirection(Direction direction) {
         Feature feature = playerStatus.exploreDirection(direction);
+        world.findNourishmentItemByChance();
         updateNourishmentUI();
-        Debug.Log("Explored " + direction + "; found feature: " + feature.getName());
+
+        if (feature != null) {
+            Debug.Log("Explored " + direction + "; found feature: " + feature.getName());
+        }
     }
 
 }

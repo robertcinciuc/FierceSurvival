@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba15982436d638b4786acb0109ae046f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiInventoryManager: {fileID: 293050808}
 --- !u!114 &169260763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +825,7 @@ MonoBehaviour:
   map: {fileID: 295085295}
   worldCamera: {fileID: 394019332}
   player: {fileID: 169260763}
+  inventory: {fileID: 169260762}
 --- !u!1 &1736635735
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,6 +891,7 @@ MonoBehaviour:
   uiMapManager: {fileID: 1789420039}
   uiInventoryManager: {fileID: 293050808}
   playerStatus: {fileID: 169260760}
+  world: {fileID: 1679889689}
 --- !u!1 &1789420036
 GameObject:
   m_ObjectHideFlags: 0

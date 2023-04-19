@@ -38,6 +38,9 @@ public class UIInventoryManager : MonoBehaviour {
         root.visible = true;
     }
 
+    public void updateNourishmentItemCount() {
+        nbJerky.text = inventory.getNbNourishmentItems(typeof(Jerky)).ToString();
+    }
 
     //Private methods
 

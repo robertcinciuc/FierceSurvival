@@ -7,6 +7,7 @@ public class World : MonoBehaviour {
     public Map map;
     public Camera worldCamera;
     public Player player;
+    public Inventory inventory;
         
     void OnEnable() {
         map.setupMap();
@@ -18,5 +19,17 @@ public class World : MonoBehaviour {
 
     void Update() {
         
+    }
+
+    //Public methods
+
+    public void findNourishmentItemByChance() {
+        System.Random random = new System.Random();
+        int chanceToGetNourishmentItem = random.Next(0, 2);
+        
+        if (chanceToGetNourishmentItem == 1) {
+           inventory.addItem(typeof(Jerky), 1);
+            Debug.Log("Found a Jerky");
+        }
     }
 }
