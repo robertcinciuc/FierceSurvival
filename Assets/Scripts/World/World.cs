@@ -23,7 +23,7 @@ public class World : MonoBehaviour {
 
     //Public methods
 
-    public void findNourishmentItemByChance() {
+    public void offerNourishmentItemByChance() {
         System.Random random = new System.Random();
         int chanceToGetNourishmentItem = random.Next(0, 2);
         

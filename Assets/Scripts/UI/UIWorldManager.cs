@@ -107,7 +107,7 @@ public class UIWorldManager : MonoBehaviour {
 
     private void exploreDirection(Direction direction) {
         Feature feature = playerStatus.exploreDirection(direction);
-        world.findNourishmentItemByChance();
+        world.offerNourishmentItemByChance();
         updateNourishmentUI();
 
         if (feature != null) {
