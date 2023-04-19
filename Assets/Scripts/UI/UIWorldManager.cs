@@ -96,8 +96,10 @@ public class UIWorldManager : MonoBehaviour {
     }
 
     private void goIntoDirection(Direction direction) {
-        playerStatus.goToNeighboringRegion(direction);
-        updateNourishmentUI();
+        bool navigated = playerStatus.goToNeighboringRegion(direction);
+        if (navigated) {
+            updateNourishmentUI();
+        }
     }
 
     private void lookAtInventory() {
@@ -107,10 +109,10 @@ public class UIWorldManager : MonoBehaviour {
 
     private void exploreDirection(Direction direction) {
         Feature feature = playerStatus.exploreDirection(direction);
-        world.offerNourishmentItemByChance();
-        updateNourishmentUI();
 
         if (feature != null) {
+            world.offerNourishmentItemByChance();
+            updateNourishmentUI();
             Debug.Log("Explored " + direction + "; found feature: " + feature.getName());
         }
     }
