@@ -21,10 +21,15 @@
             <ui:Button text="ExSW" display-tooltip-when-elided="true" name="ExploreSouthWest" class="button navigation exploration" />
             <ui:Button text="ExNW" display-tooltip-when-elided="true" name="ExploreNorthWest" class="button navigation exploration" />
         </ui:VisualElement>
-        <ui:VisualElement name="Status" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-            <ui:VisualElement name="NourishmentBar" style="height: 29px;">
-                <ui:VisualElement name="NourishmentBarBackground" class="progressBar--background" style="flex-grow: 1; height: 319px; width: 777px;">
-                    <ui:VisualElement name="NourishmentBarOverlay" class="progressBar--overlay" style="width: 50%; height: 100%;" />
+        <ui:VisualElement name="Status" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; height: 105px;">
+            <ui:VisualElement name="NourishmentBar" style="height: 45px; width: 820px;">
+                <ui:VisualElement name="NourishmentBarBackground" class="energyBar--background eneryBar--background" style="flex-grow: 1; height: 319px; width: 777px;">
+                    <ui:VisualElement name="NourishmentBarOverlay" class="energyBar--overlay" style="width: 50%; height: 100%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="HydrationBar" style="height: 44px; width: 823px;">
+                <ui:VisualElement name="HydrationBarBackground" class="hydrationBar--background" style="flex-grow: 1; height: 35px; width: 777px;">
+                    <ui:VisualElement name="HydrationBarOverlay" class="hydrationBar--overlay" style="width: 50%; height: 100%;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

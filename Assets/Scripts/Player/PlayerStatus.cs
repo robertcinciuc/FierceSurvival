@@ -29,7 +29,9 @@ public class PlayerStatus : MonoBehaviour {
     }
 
     public bool goToNeighboringRegion(Direction direction) {
-        return !isGameOver();
+        if (isGameOver()) {
+            return false;
+        }
 
         if (nourishment - 30 <= 0) {
             markInsufficientResources("nourishment", "navigation");
@@ -71,6 +73,10 @@ public class PlayerStatus : MonoBehaviour {
 
     public float getNourishmentPercentage() {
         return 100f * nourishment / maxNourishment;
+    }
+    
+    public float getHydrationPercentage() {
+        return 100f * hydration / maxHydration;
     }
 
     public void feedPlayer(int feedPoints) {

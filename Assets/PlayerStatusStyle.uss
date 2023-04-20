@@ -1,19 +1,23 @@
-.progressBar--overlay {
+.energyBar--overlay {
     background-color: rgb(243, 19, 77);
 }
 
-.progressBar--background {
-    border-left-color: rgb(103, 10, 10);
-    border-right-color: rgb(103, 10, 10);
-    border-top-color: rgb(103, 10, 10);
-    border-bottom-color: rgb(103, 10, 10);
-    border-left-width: 5px;
-    border-right-width: 5px;
-    border-top-width: 5px;
-    border-bottom-width: 5px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+.eneryBar--background {
+    border-color: rgb(103, 10, 10);
+    border-width: 5px;
+    border-radius: 20px;
     overflow: hidden;
+    margin: 5px;
+}
+
+.hydrationBar--overlay {
+    background-color: rgb(35, 46, 209);
+}
+
+.hydrationBar--background {
+    border-color: rgb(16, 29, 66);
+    border-width: 5px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 5px;
 }

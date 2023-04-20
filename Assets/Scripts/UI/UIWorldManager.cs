@@ -15,6 +15,7 @@ public class UIWorldManager : MonoBehaviour {
 
     private VisualElement root;
     private VisualElement nourishmentBarOverlay;
+    private VisualElement hydrationBarOverlay;
 
     void Start(){
     }
@@ -67,8 +68,12 @@ public class UIWorldManager : MonoBehaviour {
         Button exploreNorthWestButton = root.Q<Button>("ExploreNorthWest");
         exploreNorthWestButton.clicked += () => exploreDirection(Direction.NorthWest);
 
+        //Status
         nourishmentBarOverlay = root.Q("NourishmentBarOverlay");
         nourishmentBarOverlay.style.width = new StyleLength(Length.Percent(100));
+
+        hydrationBarOverlay = root.Q("HydrationBarOverlay");
+        hydrationBarOverlay.style.width = new StyleLength(Length.Percent(100));
 
         Button lookAtInventoryButton = root.Q<Button>("LookAtInventory");
         lookAtInventoryButton.clicked += () => lookAtInventory();
@@ -85,6 +90,11 @@ public class UIWorldManager : MonoBehaviour {
         float nourishmentPercentage = playerStatus.getNourishmentPercentage();
         nourishmentBarOverlay.style.width = new StyleLength(Length.Percent(nourishmentPercentage));
     }
+    
+    public void updateHydrationUI() {
+        float hydrationPercentage = playerStatus.getHydrationPercentage();
+        hydrationBarOverlay.style.width = new StyleLength(Length.Percent(hydrationPercentage));
+    }
 
     //Private methods
 
@@ -99,6 +109,7 @@ public class UIWorldManager : MonoBehaviour {
         bool navigated = playerStatus.goToNeighboringRegion(direction);
         if (navigated) {
             updateNourishmentUI();
+            updateHydrationUI();
         }
     }
 
@@ -113,6 +124,7 @@ public class UIWorldManager : MonoBehaviour {
         if (feature != null) {
             world.offerNourishmentItemByChance();
             updateNourishmentUI();
+            updateHydrationUI();
             Debug.Log("Explored " + direction + "; found feature: " + feature.getName());
         }
     }
