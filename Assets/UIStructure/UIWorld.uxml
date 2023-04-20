@@ -29,7 +29,7 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="Inventory">
-            <ui:Button text="LookAtInventory" display-tooltip-when-elided="true" name="LookAtInventory" class="ButtonExperimental" style="width: 100px;" />
+            <ui:Button text="LookAtInventory" display-tooltip-when-elided="true" name="LookAtInventory" class="button view-navigation" style="width: 100px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
