@@ -1,8 +1,8 @@
-.energyBar--overlay {
+.nourishmentBar--overlay {
     background-color: rgb(243, 19, 77);
 }
 
-.eneryBar--background {
+.nourishmentBar--background {
     border-color: rgb(103, 10, 10);
     border-width: 5px;
     border-radius: 20px;

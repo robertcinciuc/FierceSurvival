@@ -23,8 +23,8 @@
         </ui:VisualElement>
         <ui:VisualElement name="Status" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; height: 105px;">
             <ui:VisualElement name="NourishmentBar" style="height: 45px; width: 820px;">
-                <ui:VisualElement name="NourishmentBarBackground" class="energyBar--background eneryBar--background" style="flex-grow: 1; height: 319px; width: 777px;">
-                    <ui:VisualElement name="NourishmentBarOverlay" class="energyBar--overlay" style="width: 50%; height: 100%;" />
+                <ui:VisualElement name="NourishmentBarBackground" class="nourishmentBar--background eneryBar--background" style="flex-grow: 1; height: 319px; width: 777px;">
+                    <ui:VisualElement name="NourishmentBarOverlay" class="nourishmentBar--overlay" style="width: 50%; height: 100%;" />
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="HydrationBar" style="height: 44px; width: 823px;">
