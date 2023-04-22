@@ -47,8 +47,12 @@ public class UIInventoryManager : MonoBehaviour {
         root.visible = true;
     }
 
-    public void updateNourishmentItemCount() {
+    public void updateJerkyCount() {
         nbJerky.text = inventory.getNbItemsByType(typeof(Jerky)).ToString();
+    }
+
+    public void updateWaterBottleCount() {
+        nbWaterBottle.text = inventory.getNbItemsByType(typeof(WaterBottle)).ToString();
     }
 
     //Private methods

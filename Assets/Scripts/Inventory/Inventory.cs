@@ -50,7 +50,8 @@ public class Inventory : MonoBehaviour {
             items[itemType].Add((Object)item);
         }
 
-        uiInventoryManager.updateNourishmentItemCount();
+        uiInventoryManager.updateJerkyCount();
+        uiInventoryManager.updateWaterBottleCount();
     }
 
 }

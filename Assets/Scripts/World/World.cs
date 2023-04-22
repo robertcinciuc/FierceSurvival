@@ -23,13 +23,23 @@ public class World : MonoBehaviour {
 
     //Public methods
 
-    public void offerNourishmentItemByChance() {
+    public void offerJerkyByChance() {
         System.Random random = new System.Random();
-        int chanceToGetNourishmentItem = random.Next(0, 2);
+        int chanceToGetJerky = random.Next(0, 2);
         
-        if (chanceToGetNourishmentItem == 1) {
+        if (chanceToGetJerky == 1) {
            inventory.addItem(typeof(Jerky), 1);
             Debug.Log("Found a Jerky");
+        }
+    }
+    
+    public void offerWaterBottleByChance() {
+        System.Random random = new System.Random();
+        int chanceToGetWaterBottle = random.Next(0, 2);
+        
+        if (chanceToGetWaterBottle == 1) {
+           inventory.addItem(typeof(WaterBottle), 1);
+            Debug.Log("Found a Water Bottle");
         }
     }
 }
