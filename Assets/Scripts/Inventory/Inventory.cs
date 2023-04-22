@@ -19,18 +19,22 @@ public class Inventory : MonoBehaviour {
     
     public void setup() {
         items = new Dictionary<System.Type, List<Object>>();
-        items.Add(typeof(Jerky), new List<Object>());
 
+        items.Add(typeof(Jerky), new List<Object>());
         items[typeof(Jerky)].Add(new Jerky());
         items[typeof(Jerky)].Add(new Jerky());
         items[typeof(Jerky)].Add(new Jerky());
+        
+        items.Add(typeof(WaterBottle), new List<Object>());
+        items[typeof(WaterBottle)].Add(new WaterBottle());
+        items[typeof(WaterBottle)].Add(new WaterBottle());
     }
 
-    public int getNbNourishmentItems(System.Type nourishmentType) {
+    public int getNbItemsByType(System.Type nourishmentType) {
         return items[nourishmentType].Count;
     }
 
-    public void consumeNourishmentItem(System.Type nourishmentItemType) {
+    public void useItem(System.Type nourishmentItemType) {
         if (items[nourishmentItemType].Count > 0) {
             items[nourishmentItemType].RemoveAt(0);
         }

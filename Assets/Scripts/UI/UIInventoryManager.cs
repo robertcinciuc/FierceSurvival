@@ -11,6 +11,7 @@ public class UIInventoryManager : MonoBehaviour {
 
     private VisualElement root;
     private Label nbJerky;
+    private Label nbWaterBottle;
 
     void Start() {
     }
@@ -22,11 +23,19 @@ public class UIInventoryManager : MonoBehaviour {
         root = GetComponent<UIDocument>().rootVisualElement;
         root.visible = false;
 
+        //Jerky
         Button consumeJerkyButton = root.Q<Button>("Jerky");
         consumeJerkyButton.clicked += () => feedPlayer(typeof(Jerky));
 
         nbJerky = root.Q<Label>("NbJerky");
-        nbJerky.text = inventory.getNbNourishmentItems(typeof(Jerky)).ToString();
+        nbJerky.text = inventory.getNbItemsByType(typeof(Jerky)).ToString();
+
+        //Water bottle
+        Button drinkWaterBottle = root.Q<Button>("WaterBottle");
+        drinkWaterBottle.clicked += () => hydratePlayer(typeof(WaterBottle));
+        
+        nbWaterBottle = root.Q<Label>("NbWaterBottle");
+        nbWaterBottle.text = inventory.getNbItemsByType(typeof(WaterBottle)).ToString();
 
         Button lookAtWorldButton = root.Q<Button>("LookAtWorld");
         lookAtWorldButton.clicked += () => lookAtWorld();
@@ -39,21 +48,33 @@ public class UIInventoryManager : MonoBehaviour {
     }
 
     public void updateNourishmentItemCount() {
-        nbJerky.text = inventory.getNbNourishmentItems(typeof(Jerky)).ToString();
+        nbJerky.text = inventory.getNbItemsByType(typeof(Jerky)).ToString();
     }
 
     //Private methods
 
     private void feedPlayer(System.Type nourishmentType) {
-        if(inventory.getNbNourishmentItems(nourishmentType) <= 0) {
+        if(inventory.getNbItemsByType(nourishmentType) <= 0) {
             Debug.Log("No " + nourishmentType + " left");
             return;
         }
 
         playerStatus.feedPlayer(Jerky.nourishmentValue);
-        inventory.consumeNourishmentItem(nourishmentType);
+        inventory.useItem(nourishmentType);
         uiWorldManager.updateNourishmentUI();
-        nbJerky.text = inventory.getNbNourishmentItems(nourishmentType).ToString();
+        nbJerky.text = inventory.getNbItemsByType(nourishmentType).ToString();
+    }
+    
+    private void hydratePlayer(System.Type hydroItemType) {
+        if(inventory.getNbItemsByType(hydroItemType) <= 0) {
+            Debug.Log("No " + hydroItemType + " left");
+            return;
+        }
+
+        playerStatus.hydratePlayer(Jerky.nourishmentValue);
+        inventory.useItem(hydroItemType);
+        uiWorldManager.updateHydrationUI();
+        nbWaterBottle.text = inventory.getNbItemsByType(hydroItemType).ToString();
     }
 
     public void lookAtWorld() {

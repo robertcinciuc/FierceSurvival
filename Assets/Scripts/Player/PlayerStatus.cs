@@ -87,6 +87,15 @@ public class PlayerStatus : MonoBehaviour {
 
         this.nourishment += feedPoints;
     }
+    
+    public void hydratePlayer(int hydroPoints) {
+        if (this.hydration + hydroPoints > maxHydration) {
+            this.hydration = maxHydration;
+            return;
+        }
+
+        this.hydration += hydroPoints;
+    }
 
     //Private methods
 
