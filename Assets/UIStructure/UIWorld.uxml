@@ -21,15 +21,20 @@
             <ui:Button text="ExSW" display-tooltip-when-elided="true" name="ExploreSouthWest" class="button navigation exploration" />
             <ui:Button text="ExNW" display-tooltip-when-elided="true" name="ExploreNorthWest" class="button navigation exploration" />
         </ui:VisualElement>
-        <ui:VisualElement name="Status" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; height: 105px;">
-            <ui:VisualElement name="NourishmentBar" style="height: 45px; width: 820px;">
+        <ui:VisualElement name="Status" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; height: 145px; width: 846px;">
+            <ui:VisualElement name="NourishmentBar" style="height: 42px; width: 820px;">
                 <ui:VisualElement name="NourishmentBarBackground" class="nourishmentBar--background eneryBar--background" style="flex-grow: 1; height: 319px; width: 777px;">
                     <ui:VisualElement name="NourishmentBarOverlay" class="nourishmentBar--overlay" style="width: 50%; height: 100%;" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="HydrationBar" style="height: 44px; width: 823px;">
+            <ui:VisualElement name="HydrationBar" style="height: 41px; width: 824px;">
                 <ui:VisualElement name="HydrationBarBackground" class="hydrationBar--background" style="flex-grow: 1; height: 35px; width: 777px;">
                     <ui:VisualElement name="HydrationBarOverlay" class="hydrationBar--overlay" style="width: 50%; height: 100%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="EnergyBar" style="height: 41px; width: 804px;">
+                <ui:VisualElement name="EnergyBarBackground" class="energyBar--background" style="flex-grow: 1; height: 35px; width: 777px;">
+                    <ui:VisualElement name="EnergyBarOverlay" class="hydrationBar--overlay energyBar--overlay" style="width: 50%; height: 100%;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

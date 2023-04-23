@@ -16,6 +16,7 @@ public class UIWorldManager : MonoBehaviour {
     private VisualElement root;
     private VisualElement nourishmentBarOverlay;
     private VisualElement hydrationBarOverlay;
+    private VisualElement energyBarOverlay;
 
     void Start(){
     }
@@ -75,6 +76,9 @@ public class UIWorldManager : MonoBehaviour {
         hydrationBarOverlay = root.Q("HydrationBarOverlay");
         hydrationBarOverlay.style.width = new StyleLength(Length.Percent(100));
 
+        energyBarOverlay = root.Q("EnergyBarOverlay");
+        energyBarOverlay.style.width = new StyleLength(Length.Percent(100));
+
         Button lookAtInventoryButton = root.Q<Button>("LookAtInventory");
         lookAtInventoryButton.clicked += () => lookAtInventory();
 
@@ -95,6 +99,11 @@ public class UIWorldManager : MonoBehaviour {
         float hydrationPercentage = playerStatus.getHydrationPercentage();
         hydrationBarOverlay.style.width = new StyleLength(Length.Percent(hydrationPercentage));
     }
+    
+    public void updateEnergyUI() {
+        float energyPercentage = playerStatus.getEnergyPercentage();
+        energyBarOverlay.style.width = new StyleLength(Length.Percent(energyPercentage));
+    }
 
     //Private methods
 
@@ -110,6 +119,7 @@ public class UIWorldManager : MonoBehaviour {
         if (navigated) {
             updateNourishmentUI();
             updateHydrationUI();
+            updateEnergyUI();
         }
     }
 
@@ -126,6 +136,7 @@ public class UIWorldManager : MonoBehaviour {
             world.offerWaterBottleByChance();
             updateNourishmentUI();
             updateHydrationUI();
+            updateEnergyUI();
             Debug.Log("Explored " + direction + "; found feature: " + feature.getName());
         }
     }

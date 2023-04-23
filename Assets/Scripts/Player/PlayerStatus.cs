@@ -92,6 +92,10 @@ public class PlayerStatus : MonoBehaviour {
         return 100f * hydration / maxHydration;
     }
 
+    public float getEnergyPercentage() {
+        return 100f * energy / maxEnergy;
+    }
+
     public void feedPlayer(int feedPoints) {
         if (this.nourishment + feedPoints > maxNourishment) {
             this.nourishment = maxNourishment;
