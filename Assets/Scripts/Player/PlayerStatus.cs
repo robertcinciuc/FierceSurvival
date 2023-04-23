@@ -7,10 +7,12 @@ public class PlayerStatus : MonoBehaviour {
     public Map map;
     public int maxNourishment = 100;
     public int maxHydration = 100;
+    public int maxEnergy = 100;
 
     private Region currentRegion;
     private int nourishment;
     private int hydration;
+    private int energy;
 
     void Start() {
         
@@ -26,6 +28,7 @@ public class PlayerStatus : MonoBehaviour {
         this.currentRegion = currentRegion;
         this.nourishment = 100;
         this.hydration = 100;
+        this.energy = 100;
     }
 
     public bool goToNeighboringRegion(Direction direction) {
@@ -41,9 +44,14 @@ public class PlayerStatus : MonoBehaviour {
             markInsufficientResources("hydration", "navigation");
             return false;
         }
+        if(energy - 35 <= 0) {
+            markInsufficientResources("energy", "navigation");
+            return false;
+        }
 
         nourishment -= 30;
         hydration -= 40;
+        energy -= 35;
         currentRegion = map.goToNeighboringRegion(direction);
         return true;
     }
@@ -61,9 +69,14 @@ public class PlayerStatus : MonoBehaviour {
             markInsufficientResources("hydration", "exploration");
             return null;
         }
+        if (energy - 12 <= 0) {
+            markInsufficientResources("energy", "exploration");
+            return null;
+        }
 
         nourishment -= 10;
         hydration -= 15;
+        energy -= 12;
         return map.exploreDirection(direction);
     }
 
